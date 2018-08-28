@@ -8,6 +8,7 @@ keyword: "Liu Chang, lchang199x, Developer, Weenote, Android"
 url: "http://lchang199x.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: https://github.com/lchang199x/lchang199x.github.io # you code repository
+theme_repo: https://github.com/Huxpro/huxpro.github.io # the theme repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
