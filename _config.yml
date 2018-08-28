@@ -3,23 +3,23 @@ title: Weenote Developer Blog
 SEOTitle: Weenote Developer Blog
 header-img: img/image-header.png
 email: lchang199x@gmail.com
-description: "EveryThing ends at some point."
-keyword: "Weenote, lchang199x, Chang Liu, Android, Developer"
+description: ""
+keyword: "One must speak very much before one keeps silent."
 url: "http://lchang199x.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: https://github.com/lchang199x/lchang199x.github.io # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Goals determine what you going to be!"
-sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "Everything ends at some point!"
+sidebar-avatar: /img/about.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
 # SNS settings
 RSS: false
 github_username:    lchang199x
-jianshu_username:   我阿畅啊
+jianshu_username:   b70e06332011
 
 
 
@@ -53,16 +53,16 @@ kramdown:
 
 # 评论系统
 # Disqus（https://disqus.com/）
-# disqus_username: qiubaiying
+# disqus_username: lchang199x
 
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: f2c84e7629bb1446c1a4                            #生成的clientID
-  clientSecret: ca6d6139d1e1b8c43f8b2e19492ddcac8b322d0d    #生成的clientSecret
-  repo: qiubaiying.github.io    #仓库名称
-  owner: qiubaiying    #github用户名
-  admin: qiubaiying
+  clientID: 259834b092f13ee03a19                            #生成的clientID
+  clientSecret: b111b936f1d8682ea4d39c44df54894b246ed182    #生成的clientSecret
+  repo: lchang199x.github.io    #仓库名称
+  owner: lchang199x    #github用户名
+  admin: lchang199x
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 
@@ -74,7 +74,7 @@ ba_track_id: b50bf2b12b5338a1845e33832976fd68
 
 # Google Analytics
 ga_track_id: 'UA-90855596-1'            # Format: UA-xxxxxx-xx
-ga_domain: qiubaiying.top               # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
+ga_domain: weenote.cn               # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
 
 
 
@@ -92,7 +92,7 @@ service-worker: true
 
 
 
-# Friends
+# Links
 Links: [
     {
         title: "简书·我阿畅啊",
