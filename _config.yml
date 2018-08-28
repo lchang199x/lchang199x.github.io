@@ -3,8 +3,8 @@ title: Weenote Developer Blog
 SEOTitle: Weenote Developer Blog
 header-img: img/post-bg-desk.jpg
 email: lchang199x@gmail.com
-description: ""
-keyword: "One must speak very much before one keeps silent."
+description: "One must speak very much before one keeps silent."
+keyword: "Liu Chang, lchang199x, Developer, Weenote, Android"
 url: "http://lchang199x.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: https://github.com/lchang199x/lchang199x.github.io # you code repository
@@ -63,7 +63,7 @@ gitalk:
   repo: lchang199x.github.io    #仓库名称
   owner: lchang199x    #github用户名
   admin: lchang199x
-  distractionFreeMode: true #是否启用类似FB的阴影遮罩
+  distractionFreeMode: false #是否启用类似FB的阴影遮罩
 
 
 # 统计
@@ -93,7 +93,7 @@ service-worker: true
 
 
 # Links
-Links: [
+friends: [
     {
         title: "简书·我阿畅啊",
         href: "https://www.jianshu.com/u/b70e06332011"
