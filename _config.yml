@@ -21,9 +21,6 @@ sidebar-avatar: /img/about.jpg      # use absolute URL, seeing it's used in both
 RSS: false
 weibo_username:     weenote
 github_username:    lchang199x
-jianshu_username:   b70e06332011
-
-
 
 
 # Build settings
@@ -95,10 +92,10 @@ service-worker: true
 
 
 # Links
-friends: [
+links: [
     {
-        title: "简书·我阿畅啊",
-        href: "https://www.jianshu.com/u/b70e06332011"
+        title: "Library Genesis",
+        href: "http://gen.lib.rus.ec/"
     },{
         title: "Android Developer",
         href: "https://developer.android.google.cn/"
