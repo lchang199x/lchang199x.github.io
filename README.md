@@ -1,3 +1,3 @@
 # lchang199x.github.io
 
-Official site for Weenote developer blog
+Blog of my engineering practices, stories and latest interests.
