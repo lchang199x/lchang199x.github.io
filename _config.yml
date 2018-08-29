@@ -94,10 +94,13 @@ service-worker: true
 # Links
 friends: [
     {
-        title: "Library Genesis",
-        href: "http://gen.lib.rus.ec/"
-    },{
         title: "Android Developer",
         href: "https://developer.android.google.cn/"
+    },{
+        title: "Pexels",
+        href: "https://www.pexels.com/"
+    },{
+        title: "Library Genesis",
+        href: "http://gen.lib.rus.ec/"
     }
 ]
