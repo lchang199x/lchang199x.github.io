@@ -92,7 +92,7 @@ service-worker: true
 
 
 # Links
-links: [
+friends: [
     {
         title: "Library Genesis",
         href: "http://gen.lib.rus.ec/"
