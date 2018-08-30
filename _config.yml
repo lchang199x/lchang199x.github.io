@@ -106,5 +106,8 @@ friends: [
     },{
         title: "Library Genesis",
         href: "http://gen.lib.rus.ec/"
+    },{
+        title: "Weenote",
+        href: "https://github.com/lchang199x/lchang199x.github.io/releases/download/v1.0.0/weenote-1.0.0.apk"
     }
 ]
