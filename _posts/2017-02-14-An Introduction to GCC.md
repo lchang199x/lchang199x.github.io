@@ -11,12 +11,11 @@ tags:
     - C & C++
 ---
 
->准确地说，用作`C`编译器的命令是`gcc`，而`GCC`通常指`GNU Compiler Collection`。
+>准确地说，用作`C`编译器的命令是`gcc`，而`GCC`指的是`GNU Compiler Collection`。
 
 # 准备工作
 
-1. 在`Linux`环境下，检查`gcc`配置
-
+1.在`Linux`环境下，检查`gcc`配置
 ```Bash
 #查看gcc是否安装
 which gcc
@@ -28,8 +27,7 @@ gcc --version
 gcc --help
 ```
 
-2. `HelloWorld`，其他程序不一一列出
-
+2.`HelloWorld`，其他程序不一一列出
 ```C
 #include <stdio.h>
 
@@ -43,8 +41,6 @@ main (void)
 
 # 简单用法
 
-1. 编译过程分为预处理、编译、汇编、链接四步
-
 ```Bash
 #可用-v选项查看内部编译过程，就是那四步
 gcc hello.c
@@ -52,6 +48,8 @@ gcc hello.c
 #gcc有多级代码优化级别-OLEVEL可选
 gcc -O2 hello.c
 ```
+
+1. 编译过程分为预处理、编译、汇编、链接四步
 
 2. `gcc`提供代码优化功能
 
@@ -95,28 +93,20 @@ gcc -Wall hello.c -o hello
 
 ```Bash
 #头文件hello.h不用包含在上述命令行中
+#include "" 在查找系统头文件目录之前，先搜索当前文件夹
+#include <> 只搜索系统头文件
 gcc -Wall main.c hello_fn.c -o hello
-```
 
-1. 头文件一般用来保存函数声明，编译器通过检查函数声明，来保证函数的参数类型和返回类型在函数调用和函数定义之间正确匹配；源文件中的`#include`预处理指令会指导编译器在合适的时候自动包含头文件
-
-```C
-//在查找系统头文件目录之前，先搜索当前文件夹
-#include ""
-//只搜索系统头文件
-#include <>
-```
-
-
-2. 不可同时直接用`gcc`生成多个可执行程序/多个含有`main`函数的源文件，但是可以同时为多个文件生成中间结果
-
-```Bash
 #如果main1.c和main2.c都含有main函数则报错
 gcc main1.c main2.c
 
 #可成功生成main1.o和main2.o，使用通配符*.c更简单
 gcc -c main1.c main2.c
 ```
+
+1. 头文件一般用来保存函数声明，编译器通过检查函数声明，来保证函数的参数类型和返回类型在函数调用和函数定义之间正确匹配；源文件中的`#include`预处理指令会指导编译器在合适的时候自动包含头文件
+
+2. 不可同时直接用`gcc`生成多个可执行程序/多个含有`main`函数的源文件，但是可以同时为多个文件生成中间结果
 
 # 两步编译
 
@@ -173,9 +163,7 @@ ld -o hello hello.o xx1.o xx2.o ...
 
 库指的是预先编译好、可以被链接到程序中的目标文件集合。
 
-## 静态库
-
-1. 静态库被保存在`Archive Files`归档文件中，后缀为`.a/.lib`，可由`linux ar/windows lib.exe`工具创建。
+### 静态库
 
 ```Bash
 #库的作用通常是提供系统函数，如math库(/usr/lib/libm.a)，标准库libc.a(/usr/lib/libc.a)
@@ -188,6 +176,8 @@ ar cr libhello.a hello_fn2.o hello_fn2.o
 gcc -Wall calc.c /usr/lib/libm.a -o calc
 gcc -Wall calc.c -lm -o calc
 ```
+
+1. 静态库被保存在`Archive Files`归档文件中，后缀为`.a/.lib`，可由`linux ar/windows lib.exe`工具创建。
 
 2. 生成自己的静态库时通常要提供一个库头文件，包含该头文件可以让编译器知道所要使用的函数的原型。
 
@@ -203,7 +193,7 @@ gcc -Wall calc.c -lm -o calc
 
 8. `CPATH`也可根据具体语言(`C/C++`)写成`C_INCLUDE_PATH`和`CPLUS_INCLUDE_PATH`。
 
-## 动态库和动态链接
+### 动态库
 
 1. 动态库后缀为`.so/.dll`，链接动态库生成的可执行文件仅包含它所需函数的一个表，而不是将所需函数的二进制代码都从目标文件中拷贝过来。
 
