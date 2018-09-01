@@ -12,7 +12,7 @@ tags:
     - An Introduction to
 ---
 
->准确地说，用作`C`编译器的命令是`gcc`，而`GCC`指的是`GNU Compiler Collection`。
+>准确地说，用作C编译器的命令是gcc，而GCC指的是GNU Compiler Collection。
 
 # 准备工作
 
@@ -63,7 +63,7 @@ gcc -O2 hello.c
 
 2.编译`C++`程序应该用`g++`
 
-`gcc`可以编译`C++`源代码，但是不能正确地链接到`C++`库，因而不能完成`C++`程序的构建(提示`undefined reference`)。
+`gcc`可以编译`C++`源代码，但是不能正确地链接到`C++`库，因而不能完成`C++`程序的构建(提示undefined reference)。
 
 # 通常用法
 
@@ -177,17 +177,17 @@ gcc -Wall calc.c /usr/lib/libm.a -o calc
 gcc -Wall calc.c -lm -o calc
 ```
 
-1.静态库将目标代码打包成`Archive Files`归档文件，后缀为`.a/.lib`，可由`linux ar/windows lib.exe`工具创建。
+1.静态库将目标代码打包成Archive Files归档文件，后缀为`.a/.lib`，可由linux ar/windows lib.exe工具创建。
 
 2.生成自己的静态库时通常要提供一个库头文件，包含该头文件可以让编译器找到所使用的函数原型。
 
 3.不包含头文件编译可能不会出错，因为当使用前没有声明函数时，会根据第一次调用添加隐式函数声明（`C`标准特性），其返回值类型会被默认为`int`，如果链接库中恰好有符合这个隐式声明的函数原型，运行结果就会是对的。
 
-4.`GCC`内建函数：`GCC includes built-in versions of many of the functions in the standard C library`，主要用于优化生成的可执行文件，由此也导致不包含头文件编译时常出现“隐式声明与内建函数‘xxx’不兼容”警告。
+4.`GCC`内建函数：GCC includes built-in versions of many of the functions in the standard C library，主要用于优化生成的可执行文件，由此也导致不包含头文件编译时常出现“隐式声明与内建函数‘xxx’不兼容”警告。
 
-5.默认情况下，`gcc`先后在`/usr/local/include`和`/usr/include`目录下搜索头文件（`include path: standard include file directories`）。
+5.默认情况下，`gcc`先后在`/usr/local/include`和`/usr/include`目录下搜索头文件（include path: standard include file directories）。
 
-6.默认情况下，`gcc`先后在`/usr/local/lib`和`/usr/lib`目录下搜索库文件 （`link path: standard library directories `）。
+6.默认情况下，`gcc`先后在`/usr/local/lib`和`/usr/lib`目录下搜索库文件 （link path: standard library directories）。
 
 7.`-I`，`-L`选项可分别指定包含路径和链接路径（比标准目录优先级高），或者设置`CPATH/LIBRARY_PATH`环境变量来实现相同的效果（优先级介于`-I/-L`选项和标准目录之间，多个目录用`:`隔开 ，当前目录可用`.`或者留空）。
 
