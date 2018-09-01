@@ -106,7 +106,7 @@ gcc -c main1.c main2.c
 
 1.头文件一般用来保存函数声明，编译器通过检查函数声明，来保证函数的参数类型和返回类型在函数调用和函数定义之间正确匹配
 
-2.不可同时直接用`gcc`生成多个可执行程序/多个含有`main`函数的源文件，但是可以同时为多个文件生成中间结果
+2.不可同时用`gcc`生成多个可执行程序/多个含有`main`函数的源文件，但是可以同时为多个文件生成中间结果
 
 # 两步编译
 
@@ -130,7 +130,7 @@ gcc hello.o hello1.o -o hello
 
 # 四步编译
 
-`gcc`内部使用的预处理器为`cpp`，汇编器为`as`，链接器为`ld`，我们既可以通过`gcc`的选项，也可以直接来使用它们。
+`gcc`编译时调用的预处理器为`cpp`，汇编器为`as`，链接器为`ld`，我们既可以通过`gcc`的选项，也可以直接来使用它们。
 
 ```Bash
 #预处理
@@ -161,14 +161,13 @@ ld -o hello hello.o xx1.o xx2.o ...
 
 # 库
 
-库指的是预先编译好、可以被链接到程序中的目标文件集合。
+库指的是预先编译好、可以被链接到程序中的目标文件集合。库的作用通常是提供系统函数，如math库(/usr/lib/libm.a)，标准库libc.a(/usr/lib/libc.a)。
 
 #### 静态库
 
 ```Bash
-#库的作用通常是提供系统函数，如math库(/usr/lib/libm.a)，标准库libc.a(/usr/lib/libc.a)
-#libc.a每次编译都会默认链接，但是很多编译器都不默认链接libm.a
-#IDE一般把常用的库都放在linker的search path里
+#每个编译器都会默认链接libc.a，但是很多编译器并不默认链接libm.a
+#与之不同的是，IDE一般都把常用的库都放在linker的search path里
 #生成静态链接库
 ar cr libhello.a hello_fn1.o hello_fn2.o
 
@@ -178,15 +177,15 @@ gcc -Wall calc.c /usr/lib/libm.a -o calc
 gcc -Wall calc.c -lm -o calc
 ```
 
-1.静态库被保存在`Archive Files`归档文件中，后缀为`.a/.lib`，可由`linux ar/windows lib.exe`工具创建。
+1.静态库将目标代码打包成`Archive Files`归档文件，后缀为`.a/.lib`，可由`linux ar/windows lib.exe`工具创建。
 
-2.生成自己的静态库时通常要提供一个库头文件，包含该头文件可以让编译器知道所要使用的函数的原型。
+2.生成自己的静态库时通常要提供一个库头文件，包含该头文件可以让编译器找到所使用的函数原型。
 
 3.不包含头文件编译可能不会出错，因为当使用前没有声明函数时，会根据第一次调用添加隐式函数声明（`C`标准特性），其返回值类型会被默认为`int`，如果链接库中恰好有符合这个隐式声明的函数原型，运行结果就会是对的。
 
 4.`GCC`内建函数：`GCC includes built-in versions of many of the functions in the standard C library`，主要用于优化生成的可执行文件，由此也导致不包含头文件编译时常出现“隐式声明与内建函数‘xxx’不兼容”警告。
 
-5.默认情况下，`gcc`先后在`/usr/local/includ`e和`/usr/include`目录下搜索头文件（`include path: standard include file directories`）。
+5.默认情况下，`gcc`先后在`/usr/local/include`和`/usr/include`目录下搜索头文件（`include path: standard include file directories`）。
 
 6.默认情况下，`gcc`先后在`/usr/local/lib`和`/usr/lib`目录下搜索库文件 （`link path: standard library directories `）。
 
