@@ -24,7 +24,7 @@ tags:
 1. 你希望记录文件的变化，以便将来查阅或恢复到历史版本
 2. 你需要与其他人协同工作，共享对文件和目录所做的改变
 
-最知名的版本控制系统包括SVN和Git。
+最知名的版本控制系统包括SVN和Git：
 1. SVN是一个C/S架构的集中式版本控制系统，每个用户都与Server端的中心版本仓库进行交互。
 2. 而Git作为一个分布式版本控制系统，每个用户都有自己的版本仓库，都保存着一份完整的拷贝。
 3. 传统上，我们也会为Git指定一个主仓库，并且将所有对文件和目录的更新都合并到这一仓库中，这个主仓库就是我们后面将要介绍的Git服务器。
@@ -89,7 +89,7 @@ git commit -m "Initial commit"   //-m选项用于指定提交说明(message)，�
 2. Changes not statged for commit：表示工作区存在未添加到暂存区的改变，可使用git add将更改添加到暂存区
 3. Changes to be commit：表示暂存区存在未被提交的改变，可使用git commit提交到本地仓库
 
-对文件的改变有四种类型：new file, modified, deleted和renamed。new file处于未追踪状态，其余三种类型处于已追踪状态（已被纳入版本控制），
+对文件的改变有四种类型：new file, modified, deleted和renamed。new file处于未追踪状态，其余三种类型处于已追踪状态（已被纳入版本控制）。
 ```Bash
 #对于已追踪的文件所做的改变，可通过–am选项合并add和commit两个步骤
 git commit –am "this commit does what"。
@@ -154,28 +154,143 @@ git clone ssh://user@host/path/to/repo  //host是Git服务器，user是host上�
 git clone user@host:/path/to/repo      //scp格式的url写法，无ssh://，有分号
 #以下四种写法作用相同
 #它试图以user用户的身份，去克隆远程主机host上r用户家目录下的git_test仓库
-#回车后会要求输入user用户的密码，输入确认后会在当前目录克隆一个git_test仓库
+#回车后会要求输入用户密码passwd，输入确认后会在当前目录克隆一个git_test仓库
 git clone ssh://user@host/home/user/git_test
 git clone user@host:~user/git_test
 git clone user@host:git_test
 git clone user@host:git_test.git
 #将仓库克隆到repo目录而不是git_test
-git clone user123@192.168.1.2:git_test repo
+git clone user@host:git_test repo
 ```
 
 #### 基本操作
 
+1)	git remote & git remote -v  
+通过git clone得到的仓库，除了工作区、暂存区和本地仓库，会多出[远程仓库]这样一个区域。对于通过git init创建的本地仓库，也可以通过git remote add命令将它与一个远程仓库关联起来。远程的信息存储在.git/config文件中。
+```Bash
+git remote             //查看关联的远程仓库，Git服务器默认的名字为origin
+git remote –v          //查看远程仓库及其URL
+git remote show origin   //查看更详细的信息，尤其是远程分支的信息
+git remote add origin user@host:/path/to/repo   //添加远程仓库，相应地还有rename/rm
+```
 
+2)	git pull & git push  
+远程仓库的存在主要是为了协同工作、共享改变，git pull和git push命令就是用来和远程仓库保持同步的命令。你对工作区的改变提交到本地仓库后，可以进一步使用git push推送到远程仓库；而别人推送到远程仓库的更新，你也可以通过git pull获取，示例如下：
+```Bash
+echo "Hello World" >> README
+git add .
+git commit –m "Edit file README"
+git pull origin master     //每次push之前先执行pull是必要的
+                      //否则，当服务器存在本地没有的更新时，push会失败
+git push origin master   // origin是远程仓库的代号/别名，master是主分支的默认名称
+
+#命令的一般格式
+#":<destination>"省略时，push推送到同名分支（没有则新建），pull拉取到当前分支
+git push/pull <remote-host> <source>:<destination>
+```
+push和pull的过程可能会产生冲突（conflict），一般需要手动编辑来解决。
+Git push命令中+和-f的含义：
+1. \+ means allowing non-fast-forward updates,
+2. \-f 强制push，server端将丢失commits
+3. 联想git merge的--no-ff选项要求不采用快进方式（试图直接移动HEAD指针）
+
+3)	git branch & git merge  
+Git的分支就是一个指向commit id的指针，新建仓库时都会默认创建master分支，可用git branch -a查看所有分支(本地&远程)，形如origin/master的分支称为远程追踪分支，它存在于本地并引用/指向远程分支（位于Git服务器），不混淆的情况下也直接称origin/master为远程分支。git fetch origin会建立/更新所有远程跟踪分支，然后作为起始点新建分支。
+常见分支操作如下：
+```Bash
+git branch          //查看本地分支，-r查看远程分支，-a查看所有分支
+git branch xxx       //新建分支，一般不在master分支开发，新建xxx分支进行开发
+git pull origin xxx    //获取分支的另一种方法是从服务器拉取
+git checkout xxx     //由master分支切换到xxx分支
+git checkout -b dev   //一步到位，新建xxx分支并切换到xxx分支
+---------------------- 在xxx分支上进行发ing ----------------------
+git push origin xxx    //将xxx分支推送到远程仓库，如果有必要的话
+git checkout master   //切换回master分支，会恢复工作区到master分支的内容
+git diff master xxx    //查看xxx分支相对于master分支的改变
+git branch --merged   //当前分支包含哪些分支
+git merge xxx        //将xxx分支的改变合并到master分支
+git merge --abort      //合并冲突的消极处理，即撤销本次合并，应手动编辑解决
+git branch -d xxx     //开发全部完成后，可以删除dev分支
+git branch -D xxx     //强制删除，-D相当于-df
+git branch -m xxx ooo    //移动/重命名分支
+git push origin --delete xxx  //从服务器上删除xxx分支
+```
+每个分支都有独立的工作区和本地仓库，但是他们共享暂存区，所以从分支branch1切换到branch2时，branch1中未提交的更改对banch2也可见，而这通常不是我们所期望的，解决方法包括切换分支前提交所有更改，或者通过git stash解决。
+
+4)	git stash  
+将当前工作区和暂存区状态存储起来，并将工作区和暂存区恢复到上一次提交的状态（相当于执行了git reset hard HEAD）。
+```Bash
+git stash [save] "message"
+git stash list
+git stash show –p|--patch
+git stash drop
+git stash clear
+git stash pop|apply stash@{0}
+```
+
+5)	git tag  
+对某一个时间点上的版本打一个标签来标识版本号，发布某个版本时经常这样做。
+```Bash
+git tag                 //列出所有标签
+git tag –l '1.0.*'      //列出特定标签
+git tag v1.4-lw         //新建轻量级标签，它仅是一个指向特定提交的引用
+git tag –a v1.4 –m "version 1.4 for release"  //新建带附注annotated的标签，它是一个Git对象
+git show v1.4       //查看标签
+git tag –a v1.2 commit_id   //后期加注标签
+git push origin v1.2        //分享标签v1.2，--tags选项分享所有标签
+```
+
+6)	git revert & git reset  
+Git维持着一个HEAD指针，它指向当前分支的最新位置。文件.git/HEAD中存储着当前分支(ref: refs/heads/current_branch)，文件.git/refs/heads/current_branch存储着最新位置(最后一次提交的commit id)。版本是由commit id标识的，因而版本[回退]也要根据commit id(或HEAD指针)来操作：
+```Bash
+git revert HEAD   //回撤最后一次提交，会保留提交日志，并新增一条回退日志
+git revert HEAD^  //回撤最后两次提交
+git revert HEAD~3  //回撤最后三次提交
+git revert HEAD~4  //回撤最后四次提交
+……
+```
+版本回退离不开git log [--oneline]命令，每次回退都应该查看提交日志！
+
+与git revert类似，git reset用于[重置]到之前的某个版本，也就是将HEAD指针移动到之前的某次提交，而那次之后的所有提交（包括提交日志）都会被丢弃(并不会立刻消失，在产生新的提交之前你还可以用reset指回去，前提是你提前备份了commit id)。git reset不会影响远程仓库，虽然带-f选项的git push会强制覆盖远程仓库，但显然是不推荐的。
+```Bash
+git reset HEAD     //重置HEAD指针，指向最后一次提交
+git reset commit_id  //重置HEAD指针，指向commit id
+git reset HEAD^    //重置HEAD指针，指向倒数第二次提交
+git reset --soft HEAD~3  //--soft选项重置HEAD指针，除此之外不做任何事
+git reset [--mix] HEAD~3  //--mix是默认选项，重置并同时改变暂存区以匹配仓库
+git reset --hard HEAD~3  //--hard选项重置并同时改变暂存区和工作区以匹配仓库
+```
+
+注1：git_test && git_test.git  
+在本章开头的示例中，我们提到git_test和git_test.git都可作为仓库名。实际上远程仓库git_test是一个裸仓库，裸仓库指的是没有工作区的仓库，可用git init --bare初始化一个裸仓库。按照Git的惯例，裸仓库命名常以.git结尾，但这不是必须的(在gitolite中是必须的)。
+
+只有裸仓库才能接受git push推送，因此Git服务器上的仓库都应该是裸仓库。在Git命令中用到裸仓库时，扩展名.git是可选的，因此例子中用的都是git_test，也可以写成git_test.git。
+
+注2：SSH协议的认证方式  
+在本章开头的示例中，我们以用户名(user)+密码(passwd)的方式访问远程主机，这时如果要实现访问控制，就需要远程主机为每个客户新建一个账号。实际上，SSH协议还提供了一种更加方便的认证方式，即公钥(xxx.pub)+私钥(xxx)的方式。
+
+用户可使用ssh-keygen命令生成自己的公钥和私钥（见附录），只需将公钥发送给远程主机，由远程主机管理员将公钥内容附加到用户user123的~/.ssh/authorized_keys文件中，下次访问即无需密码。
+
+注3：虚拟机作为远程仓库  
+当Git服务器不是一台实际的电脑，而是一台虚拟机时。要使虚拟机成为局域网中的一员，能被局域网用户访问，比较方便的做法是：在[虚拟机—>设置—>网络适配器]中将网络连接设置成[桥接模式]，然后开启虚拟机并正确配置其IP地址(见附录)。
+
+注4：tracking branch && upstream branch  
+设置本地分支追踪某个远程分支，就可以直接拉取pull（=抓取fetch+合并merge）
+1. git clone的仓库会自动创建tracking branch
+2. 第一次push加-u可创建tracking branch
+3. git branch –u origin/branch1修改上游分支
 
 # 权限管理
+
+Git本身对访问控制基本无能为力，而Gitolite作为一款针对Git的访问控制工具，能够提供便利且精细化的访问控制，这就是我们采用Git+Gitolite搭建Git服务器的原因。Gitolite基于SSH协议且只能使用公钥+私钥的认证方式，用户需要生成公钥并发送给Git服务器管理员，而剩下的工作对用户都是不可见的。所以，本章不会讨论gitolite的工作原理，而是从用户角度来看待访问控制。
 
 #### 访问规则
 
 Gitolite采用gitolite.conf配置文件来设置访问权限，其中有很多类似类似于以下所示的访问控制列表：
 
 ```
-repo 903-1-hwa-android                           //repo行
-		RW+				  =	fye yifyang    //规则1
+repo repo-to-be-created                           //repo行
+		RW+				  =	user1 user2    //规则1
 		-  	master		=	@all	       //规则2
 		RW				   =	cliu           //规则3
 		R					=	@all	       //规则4
@@ -183,9 +298,9 @@ repo 903-1-hwa-android                           //repo行
 
 访问控制列表由repo行和多条访问规则构成，这些访问规则依序检查，放在前面的被优先匹配，具体解释如下:
 
-1. repo行：服务器端将自动创建一个名为903-1-hwa-android的仓库
-2. 规则1：fye和yifyang对这个仓库有强制(+)读写权限，参见man git-push中关于+号的解释，fye和yifyang代表用户，实际上是用户.pub文件的名字
-3. 规则2：禁止所有人推送到master分支，由于规则依序检查，这条规则并不影响fye和yifyang推送到master分支，@all为gitolite内建的组，在此代表所有用户
+1. repo行：服务器端将自动创建一个名为repo-to-be-created的仓库
+2. 规则1：user1和user2对这个仓库有强制(+)读写权限，参见man git-push中关于+号的解释，user1和user2代表用户，实际上是用户.pub文件的名字
+3. 规则2：禁止所有人推送到master分支，由于规则依序检查，这条规则并不影响user1和user2推送到master分支，@all为gitolite内建的组，在此代表所有用户
 4. 规则3：cliu对这个仓库有读写权限，但是不能推送到master分支
 5. 规则4：所有人都有读取权限
 
@@ -219,3 +334,46 @@ ssh git@host help
 
 
 # 开发流程
+
+本章将主要介绍Gitflow
+
+
+# 附录
+
+#### Ubuntu静态IP配置
+
+在/etc/network/interfaces文件中添加以下四行：
+```
+auto eth0
+iface eth0 inet static
+address 192.168.x.x
+netmask 255.255.255.0
+```
+eth0是网卡的名称，须通过ifconfig查询。重启后可通过ifconfig以及ping192.168.1.2验证配置是否生效。
+
+#### SSH密钥生成
+
+在Terminal中执行ssh-keygen命令，默认会在~/.ssh目录下生成公钥id_rsa.pub和私钥id_rsa。
+
+将公钥重命名为你想要的名称，该名称不必和本地用户名相同，它是你在gitolite系统中的独立标识。
+
+如果用户cliu有多个公钥(PC/虚拟机/笔记本上都要用Git)，且希望适用相同的访问规则，可命名为如下形式：
+```Bash
+cliu@pc.pub	for desktop
+cliu@vm.pub	for virtual machine
+cliu@lt.pub	for laptop
+```
+
+#### Git目录结构
+
+#####	Git对象
+1. Blob对象：存储文件内容
+2. Tree对象：存储目录内容层次关系
+3. Commit对象：标记项目某个特定时间点的状态
+4. Tag对象：可标记任何Git对象，但一般指向一个Commit
+
+##### Git引用
+1. Heads：分支/提交/最新commit SHA1
+2. Remote：远程引用，如origin/master分支，它存在于本地，是远程仓库分支的索引，执行git fetch将得到更新
+3. Tags：标签，固定commit
+4. .git/HEAD：引用标识符，指向heads中的对应文件，是可变的commit
