@@ -26,7 +26,7 @@ tags:
 
 #### 准备工作
 
-Git官网：http://git-scm.com   //这里有使用Git所需的一切
+Git官网：<http://git-scm.com>   //这里有使用Git所需的一切
 
 Git安装：apt install git       //执行git --version检验是否安装成功
 
@@ -267,37 +267,10 @@ git reset --hard HEAD~3  //--hard选项重置并同时改变暂存区和工作�
 用户可使用ssh-keygen命令生成自己的公钥和私钥，默认会在~/.ssh目录下生成公钥id_rsa.pub和私钥id_rsa。只需将公钥发送给远程主机，由远程主机管理员将公钥内容附加到~user/.ssh/authorized_keys文件中，下次访问即无需密码。
 
 注3：虚拟机作为远程仓库  
-当Git服务器不是一台实际的电脑，而是一台虚拟机时。要使虚拟机成为局域网中的一员，能被局域网用户访问，比较方便的做法是：在[虚拟机—>设置—>网络适配器]中将网络连接设置成[桥接模式]，然后开启虚拟机并正确配置其IP地址(见附录)。
+当Git服务器不是一台实际的电脑，而是一台虚拟机时。要使虚拟机成为局域网中的一员，能被局域网用户访问，比较方便的做法是：在[虚拟机—>设置—>网络适配器]中将网络连接设置成[桥接模式]，然后开启虚拟机并正确配置其IP地址。
 
 注4：tracking branch && upstream branch  
 设置本地分支追踪某个远程分支，就可以直接拉取pull（=抓取fetch+合并merge）
 1. git clone的仓库会自动创建tracking branch
 2. 第一次push加-u可创建tracking branch
 3. git branch –u origin/branch1修改上游分支
-
-# 附录
-
-#### Ubuntu静态IP配置
-
-在/etc/network/interfaces文件中添加以下四行：
-```
-auto eth0
-iface eth0 inet static
-address 192.168.x.x
-netmask 255.255.255.0
-```
-eth0是网卡的名称，须通过ifconfig查询。重启后可通过ifconfig以及ping192.168.1.2验证配置是否生效。
-
-#### Git目录结构
-
-#####	Git对象
-1. Blob对象：存储文件内容
-2. Tree对象：存储目录内容层次关系
-3. Commit对象：标记项目某个特定时间点的状态
-4. Tag对象：可标记任何Git对象，但一般指向一个Commit
-
-##### Git引用
-1. Heads：分支/提交/最新commit SHA1
-2. Remote：远程引用，如origin/master分支，它存在于本地，是远程仓库分支的索引，执行git fetch将得到更新
-3. Tags：标签，固定commit
-4. .git/HEAD：引用标识符，指向heads中的对应文件，是可变的commit
