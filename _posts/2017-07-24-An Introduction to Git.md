@@ -8,13 +8,8 @@ header-img: img/post-daily-bg.jpg
 catalog: true
 tags:
     - Git
-    - Gitolite
-    - Ubuntu
     - An Introduction to
 ---
-
->本教程介绍Git的基本操作、基于Gitolite插件的权限管理，以及使用Git进行版本控制时的开发流程。
-
 
 # 前言
 
@@ -52,7 +47,7 @@ git config --list                         //列出所有配置
 用户级	  |--global	|~/.gitconfig
 项目级	  |默认	    |.git/config
 
-注2：只有user.name和user.email是必须配置的，配置core.editor只是为了方便，因为nano比较难用，editor主要用于编辑较长的提交说明（见2.1节）。
+注2：只有user.name和user.email是必须配置的，配置core.editor只是为了方便，因为nano比较难用，editor主要用于编辑较长的提交说明。
 
 注3：Git原生环境是命令行界面，但是也有一些GUI工具可供使用，如Git自带的gitk和git gui、Windows下的tortoiseGit以及Linux下的GitKraken。
 
@@ -262,14 +257,14 @@ git reset --hard HEAD~3  //--hard选项重置并同时改变暂存区和工作�
 ```
 
 注1：git_test && git_test.git  
-在本章开头的示例中，我们提到git_test和git_test.git都可作为仓库名。实际上远程仓库git_test是一个裸仓库，裸仓库指的是没有工作区的仓库，可用git init --bare初始化一个裸仓库。按照Git的惯例，裸仓库命名常以.git结尾，但这不是必须的(在gitolite中是必须的)。
+在本章开头的示例中，我们提到git_test和git_test.git都可作为仓库名。实际上远程仓库git_test是一个裸仓库，裸仓库指的是没有工作区的仓库，可用git init --bare初始化一个裸仓库。按照Git的惯例，裸仓库命名常以.git结尾，但这不是必须的。
 
 只有裸仓库才能接受git push推送，因此Git服务器上的仓库都应该是裸仓库。在Git命令中用到裸仓库时，扩展名.git是可选的，因此例子中用的都是git_test，也可以写成git_test.git。
 
 注2：SSH协议的认证方式  
 在本章开头的示例中，我们以用户名(user)+密码(passwd)的方式访问远程主机，这时如果要实现访问控制，就需要远程主机为每个客户新建一个账号。实际上，SSH协议还提供了一种更加方便的认证方式，即公钥(xxx.pub)+私钥(xxx)的方式。
 
-用户可使用ssh-keygen命令生成自己的公钥和私钥（见附录），只需将公钥发送给远程主机，由远程主机管理员将公钥内容附加到用户user123的~/.ssh/authorized_keys文件中，下次访问即无需密码。
+用户可使用ssh-keygen命令生成自己的公钥和私钥，默认会在~/.ssh目录下生成公钥id_rsa.pub和私钥id_rsa。只需将公钥发送给远程主机，由远程主机管理员将公钥内容附加到~user/.ssh/authorized_keys文件中，下次访问即无需密码。
 
 注3：虚拟机作为远程仓库  
 当Git服务器不是一台实际的电脑，而是一台虚拟机时。要使虚拟机成为局域网中的一员，能被局域网用户访问，比较方便的做法是：在[虚拟机—>设置—>网络适配器]中将网络连接设置成[桥接模式]，然后开启虚拟机并正确配置其IP地址(见附录)。
@@ -279,64 +274,6 @@ git reset --hard HEAD~3  //--hard选项重置并同时改变暂存区和工作�
 1. git clone的仓库会自动创建tracking branch
 2. 第一次push加-u可创建tracking branch
 3. git branch –u origin/branch1修改上游分支
-
-# 权限管理
-
-Git本身对访问控制基本无能为力，而Gitolite作为一款针对Git的访问控制工具，能够提供便利且精细化的访问控制，这就是我们采用Git+Gitolite搭建Git服务器的原因。Gitolite基于SSH协议且只能使用公钥+私钥的认证方式，用户需要生成公钥并发送给Git服务器管理员，而剩下的工作对用户都是不可见的。所以，本章不会讨论gitolite的工作原理，而是从用户角度来看待访问控制。
-
-#### 访问规则
-
-Gitolite采用gitolite.conf配置文件来设置访问权限，其中有很多类似类似于以下所示的访问控制列表：
-
-```
-repo repo-to-be-created                           //repo行
-		RW+				  =	user1 user2    //规则1
-		-  	master		=	@all	       //规则2
-		RW				   =	cliu           //规则3
-		R					=	@all	       //规则4
-```
-
-访问控制列表由repo行和多条访问规则构成，这些访问规则依序检查，放在前面的被优先匹配，具体解释如下:
-
-1. repo行：服务器端将自动创建一个名为repo-to-be-created的仓库
-2. 规则1：user1和user2对这个仓库有强制(+)读写权限，参见man git-push中关于+号的解释，user1和user2代表用户，实际上是用户.pub文件的名字
-3. 规则2：禁止所有人推送到master分支，由于规则依序检查，这条规则并不影响user1和user2推送到master分支，@all为gitolite内建的组，在此代表所有用户
-4. 规则3：cliu对这个仓库有读写权限，但是不能推送到master分支
-5. 规则4：所有人都有读取权限
-
-#### Gitolite命令
-
-使用SSH协议登陆远程主机可以直接执行Linux命令，如ssh user@host pwd && ls。然而，当远程主机上安装了Gitolite之后，将只能执行Gitlolite命令。
-```Bash
-#查看Gitolite支持的命令
-ssh git@host help
-```
-
-你将看到，Gitolite默认支持的命令是很少的，仅有7个，它们将在后文介绍。现在让我们关注一下图中红色下划线标注的内容：Gitolite以SSH公钥的名字来标识用户，输出“hello cliu”意味着当前用户公钥的名字为cliu.pub。
-下面介绍常用命令：
-
-1)	ssh git@host info  
-显示Git服务器上有哪些仓库，以及当前用户的访问权限，你会看到类似如下的结果：
-
-可以看到，服务器上一共有10个仓库，用户cliu对一些用户有读写权限（RW），对另一些仓库只有读权限（R），需要注意的是强制读写权限（RW+）中的+号并不会标出来。再一次，让我们关注一些红色下划线的内容，字母C代表create (新建)，表示用户可以在服务器上创建仓库。
-
-2)	ssh git@host create  
-
-3)	ssh git@host perms dev/alice/repo + WRITERS dave to add a user  
-
-4)	ssh git@host perms dev/alice/repo - WRITERS dave to remove a user  
-
-5)	ssh git@host perms -l dev/alice/repo to list current user lists  
-
-6)	ssh git@host D unlock dev/alice/my-new-repo  
-
-7)	ssh git@host D rm dev/alice/my-new-repo  
-
-
-# 开发流程
-
-本章将主要介绍Gitflow
-
 
 # 附录
 
@@ -350,19 +287,6 @@ address 192.168.x.x
 netmask 255.255.255.0
 ```
 eth0是网卡的名称，须通过ifconfig查询。重启后可通过ifconfig以及ping192.168.1.2验证配置是否生效。
-
-#### SSH密钥生成
-
-在Terminal中执行ssh-keygen命令，默认会在~/.ssh目录下生成公钥id_rsa.pub和私钥id_rsa。
-
-将公钥重命名为你想要的名称，该名称不必和本地用户名相同，它是你在gitolite系统中的独立标识。
-
-如果用户cliu有多个公钥(PC/虚拟机/笔记本上都要用Git)，且希望适用相同的访问规则，可命名为如下形式：
-```Bash
-cliu@pc.pub	for desktop
-cliu@vm.pub	for virtual machine
-cliu@lt.pub	for laptop
-```
 
 #### Git目录结构
 
