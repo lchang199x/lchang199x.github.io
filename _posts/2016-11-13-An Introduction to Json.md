@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      An Introduction to Json
-subtitle:   json必知必会
+subtitle:   Json必知必会
 date:       2016-11-13
 author:     Cliu
 header-img: img/post-daily-bg.jpg
@@ -13,10 +13,13 @@ tags:
 
 # 初识Json
 
-1. Json全称Javascript Object Notation，即JavaScript对象表示法。
-2. 基于JavaScript对象字面量，仅关注属性的字面量而不包含函数字面量。
-3. 类似于xml，csv等，也是一种数据交换格式，用于在不同平台或系统间交换数据的文本。
-4. Json的MIME类型是application/json。
+Json全称Javascript Object Notation，即JavaScript对象表示法。
+
+基于JavaScript对象字面量，仅关注属性的字面量而不包含函数字面量。
+
+类似于xml，csv等，也是一种数据交换格式，用于在不同平台或系统间交换数据的文本。
+
+Json的MIME类型是application/json。
 
 注1：JavaScript的MIME类型是text/javascript，Java的MIME类型是application/java，这就说明了它们仨是不同的东西。
 
@@ -24,10 +27,10 @@ tags:
 
 # 举例说明
 ```
-//这是一个JavaScript对象字面量，双引号也可换成单引号
+//这是一个JavaScript对象字面量，双引号可换成单引号
 {firstname:"Bill", lastname:"Gates", id:5566};
 
-//这是一个JSON，除了字符串类型的值必须加双引号之外，名称也都必须加上双引号
+//这是一个JSON，除了字符串类型的值必须加双引号，所有名称也要加双引号
 //双引号不可换成单引号
 {"firstname":"Bill", "lastname":"Gates", "id":5566};
 ```
@@ -35,7 +38,7 @@ tags:
 对于特殊字符，需要用反斜杠\进行转义：比如双引号\"content\"，反斜杠本身\\，以及任意unicode字符\u263A。
 
 ```
-//json字符串，javascript中字符串用单引号和双引号皆可，JavaScript 变量均为对象
+//JSON字符串，Javascript字符串用单引号和双引号皆可，JavaScript 变量均为对象
 var jsonString = '{"animal":"cat"}';
 
 //将JSON字符串转化为JavaScript对象（反序列化），JSON.parse()比eval()更加安全
@@ -59,6 +62,6 @@ org.json包是Java常用的Json解析工具，导入lib即可使用，Android也
 [{name:'a',value:'aa'},{name:'b',value:'bb'},{name:'c',value:'cc'},{name:'d',value:'dd'}]
 ```
 
-注1：map键值对用等号赋值，json键值对用冒号分开，这是一个无关痛痒的联想。
+注1：Map键值对用等号赋值，Json键值对用冒号分开，这是一个无关痛痒的联想。
 
 注2：延伸阅读包括Gson、Fastjson、Jackson，用好一个就行。
