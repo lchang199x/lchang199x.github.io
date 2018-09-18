@@ -1,15 +1,14 @@
 # Site settings
-title: Wee Blog
-SEOTitle: Wee Blog
+title: Chang's Homepage
+SEOTitle: Chang's Homepage
 header-img: img/home-bg.jpg
 email: lchang199x@gmail.com
-description: "Weenote Developer Blog."
-keyword: "Weenote, Cliu, Android, Developer, Blog, Homepage"
+description: "Chang's Homepage"
+keyword: "Chang's Homepage, Weenote developer Blog"
 url: "http://lchang199x.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: https://github.com/lchang199x/lchang199x.github.io # you code repository
 theme_repo: https://github.com/Huxpro/huxpro.github.io # the theme repository
-download: /download/latest/weenote-1.0.0.apk
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
