@@ -11,6 +11,8 @@ tags:
     - An Introduction to
 ---
 
+>本文在Ubuntu环境下操作，除去小部分Shell命令，涉及到Git的部分都是通用的
+
 # 前言
 
 #### 版本控制
@@ -28,12 +30,12 @@ tags:
 
 Git官网：<http://git-scm.com>   //这里有使用Git所需的一切
 
-Git安装：apt install git       //执行git --version检验是否安装成功
+Git安装：apt install git       //执行git \-\-version检验是否安装成功
 
 Git配置：在使用git之前必须进行一项基本配置，即告诉Git你是谁(姓名和邮件)，这项工作由git config命令完成：
 ```Bash
 git config --global user.name "xxx"       //--glabal选项表示用户级的配置
-git config --global user.email xxx@zydz.com
+git config --global user.email "xxx@zydz.com"
 git config --global core.editor gedit     //用gedit代替默认的nano编辑器
 git config --alias.st status              //为status命令设置别名st
 git config --list                         //列出所有配置
@@ -49,7 +51,7 @@ git config --list                         //列出所有配置
 
 注2：只有user.name和user.email是必须配置的，配置core.editor只是为了方便，因为nano比较难用，editor主要用于编辑较长的提交说明。
 
-注3：Git原生环境是命令行界面，但是也有一些GUI工具可供使用，如Git自带的gitk和git gui、Windows下的tortoiseGit以及Linux下的GitKraken。
+注3：Git原生环境是命令行界面，但是也有一些GUI工具可供使用，如Git自带的gitk和git gui、以及tortoiseGit、GitKraken等第三方客户端。
 
 # Git本地仓库
 
@@ -270,7 +272,7 @@ git reset --hard HEAD~3  //--hard选项重置并同时改变暂存区和工作�
 当Git服务器不是一台实际的电脑，而是一台虚拟机时。要使虚拟机成为局域网中的一员，能被局域网用户访问，比较方便的做法是：在[虚拟机—>设置—>网络适配器]中将网络连接设置成[桥接模式]，然后开启虚拟机并正确配置其IP地址。
 
 注4：tracking branch && upstream branch  
-设置本地分支追踪某个远程分支，就可以直接拉取pull（=抓取fetch+合并merge）
+设置本地分支追踪某个远程分支，就可以直接git pull拉取（=抓取fetch+合并merge）
 1. git clone的仓库会自动创建tracking branch
 2. 第一次push加-u可创建tracking branch
 3. git branch –u origin/branch1修改上游分支
