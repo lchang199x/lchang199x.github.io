@@ -117,21 +117,21 @@ git log –p                     //显示每次提交的内容差异
 git diff用于比较不同区域的文件，git checkout用于恢复工作区文件。
 ```Bash
 git diff              //查看工作区相对于暂存区的改变
-git diff –-staged       //查看暂存区相对于本地仓库的改变，staged也写作cached
+git diff --staged       //查看暂存区相对于本地仓库的改变，staged也写作cached
 git checkout <path>    //撤销工作区更改，i.e.将暂存区的内容恢复到工作区
 git checkout commit_id <path>   //将文件从特定版本恢复到暂存区待提交
 
 #顺便说一下撤销暂存和修补提交
 git reset HEAD <path>        //将暂存区的内容恢复到未暂存的状态(unstage)
                              //常用于重新组织更改形成一个有关联的commit
-git commit –-amend <file>     //修补最后一次提交，常用于添加改变或修改message
+git commit --amend <file>     //修补最后一次提交，常用于添加改变或修改message
 ```
 
 5)	git clean  
-递归地删除工作区所有未被追踪的文件，通常需要结合-f和-d选项使用。
+递归地删除工作区所有未被追踪的文件，通常需要结合-f选项和-d选项使用。
 
 6)	git help  
-查看帮助，如git help add查看命令git add的用法，这与man git-add/ git add \–\-help的作用相同。
+查看帮助，如git help add查看命令git add的用法，这与man git-add/ git add \-\-help的作用相同。
 
 # Git远程仓库
 
