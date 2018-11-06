@@ -45,8 +45,8 @@ git config --list                         //列出所有配置
 
 配置的级别|配置选项|配置文件
 ---------|--------|--------
-系统级	  |--system |	/etc/gitconfig
-用户级	  |--global	|~/.gitconfig
+系统级	  |\-\-system |	/etc/gitconfig
+用户级	  |\-\-global	|~/.gitconfig
 项目级	  |默认	    |.git/config
 
 注2：只有user.name和user.email是必须配置的，配置core.editor只是为了方便，因为nano比较难用，editor主要用于编辑较长的提交说明。
@@ -111,7 +111,7 @@ git log –p                     //显示每次提交的内容差异
 删除和重命名也是常见的操作，在命令行中执行删除和重命名操作时，使用git rm和git mv与直接使用linux自带的rm和mv的区别在于：
 1. 使用git命令执行的操作同时作用于工作区和暂存区
 2. 而rm/mv属于工作区的操作，因而还要通过git add添加这些改变到暂存区。
-3. 带有--statged选项的git rm，它仅从暂存区删除某文件而在工作区保留该文件。
+3. 带有\-\-statged选项的git rm，它仅从暂存区删除某文件而在工作区保留该文件。
 
 4)	git diff & git checkout  
 git diff用于比较不同区域的文件，git checkout用于恢复工作区文件。
@@ -189,7 +189,7 @@ push和pull的过程可能会产生冲突（conflict），一般需要手动编�
 Git push命令中+和-f的含义：
 1. \+ means allowing non-fast-forward updates,
 2. \-f 强制push，server端将丢失commits
-3. 联想git merge的--no-ff选项要求不采用快进方式（试图直接移动HEAD指针）
+3. 联想git merge的\-\-no-ff选项要求不采用快进方式（试图直接移动HEAD指针）
 
 3)	git branch & git merge  
 Git的分支就是一个指向commit id的指针，新建仓库时都会默认创建master分支，可用git branch -a查看所有分支(本地&远程)，形如origin/master的分支称为远程追踪分支，它存在于本地并引用/指向远程分支（位于Git服务器），不混淆的情况下也直接称origin/master为远程分支。git fetch origin会建立/更新所有远程跟踪分支，然后作为起始点新建分支。
@@ -246,7 +246,7 @@ git revert HEAD~3  //回撤最后三次提交
 git revert HEAD~4  //回撤最后四次提交
 ……
 ```
-版本回退离不开git log [--oneline]命令，每次回退都应该查看提交日志！
+版本回退离不开git log [\-\-oneline]命令，每次回退都应该查看提交日志！
 
 与git revert类似，git reset用于[重置]到之前的某个版本，也就是将HEAD指针移动到之前的某次提交，而那次之后的所有提交（包括提交日志）都会被丢弃(并不会立刻消失，在产生新的提交之前你还可以用reset指回去，前提是你提前备份了commit id)。git reset不会影响远程仓库，虽然带-f选项的git push会强制覆盖远程仓库，但显然是不推荐的。
 ```Bash
@@ -259,7 +259,7 @@ git reset --hard HEAD~3  //--hard选项重置并同时改变暂存区和工作�
 ```
 
 注1：git_test && git_test.git  
-在本章开头的示例中，我们提到git_test和git_test.git都可作为仓库名。实际上远程仓库git_test是一个裸仓库，裸仓库指的是没有工作区的仓库，可用git init --bare初始化一个裸仓库。按照Git的惯例，裸仓库命名常以.git结尾，但这不是必须的。
+在本章开头的示例中，我们提到git_test和git_test.git都可作为仓库名。实际上远程仓库git_test是一个裸仓库，裸仓库指的是没有工作区的仓库，可用git init \-\-bare初始化一个裸仓库。按照Git的惯例，裸仓库命名常以.git结尾，但这不是必须的。
 
 只有裸仓库才能接受git push推送，因此Git服务器上的仓库都应该是裸仓库。在Git命令中用到裸仓库时，扩展名.git是可选的，因此例子中用的都是git_test，也可以写成git_test.git。
 
