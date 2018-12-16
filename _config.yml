@@ -77,8 +77,6 @@ gitalk:
 
 
 
-
-
 # Featured Tags
 featured-tags: true                     # 是否使用首页标签
 featured-condition-size: 1              # 相同标签数量大于这个数，才会出现在首页
@@ -97,19 +95,19 @@ friends: [
         title: "Android Developer",
         href: "https://developer.android.google.cn/"
     },{
-        title: "Wikipedia",
-        href: "https://en.wikipedia.org/"
-    },{
-        title: "Pexels",
-        href: "https://www.pexels.com/"
+        title: "Google Samples",
+        href: "https://github.com/googlesamples"
     },{
         title: "Iconfont",
         href: "https://www.iconfont.cn/"
     },{
+        title: "Pexels",
+        href: "https://www.pexels.com/"
+    },{
+        title: "Wikipedia",
+        href: "https://en.wikipedia.org/"
+    },{
         title: "Library Genesis",
         href: "http://gen.lib.rus.ec/"
-    },{
-        title: "WeeNote",
-        href: "https://iffapp.net/a/oVMYB1"
     }
 ]
