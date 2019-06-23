@@ -22,8 +22,8 @@ tags:
 2. 你需要与其他人协同工作，共享对文件和目录所做的改变
 
 最知名的版本控制系统包括SVN和Git：
-1. SVN是一个C/S架构的集中式版本控制系统，每个用户都与Server端的中心版本仓库进行交互。
-2. 而Git作为一个分布式版本控制系统，每个用户都有自己的版本仓库，都保存着一份完整的拷贝。
+1. SVN是一个C/S架构的集中式版本控制系统，每个用户都与Server端的中心版本仓库进行交互，本地只保存这最近同步地版本，看不到历史版本，也不能切到其他分支工作。
+2. 而Git作为一个分布式版本控制系统，每个用户都有自己的版本仓库，都保存着一份完整的拷贝，不存在SVN所有数据保存在单一服务器的风险。
 3. 传统上，我们也会为Git指定一个主仓库，并且将所有对文件和目录的更新都合并到这一仓库中，这个主仓库就是我们后面将要介绍的Git服务器。
 
 #### 准备工作
@@ -89,7 +89,7 @@ git commit -m "Initial commit"   //-m选项用于指定提交说明(message)，�
 对文件的改变有四种类型：new file, modified, deleted和renamed。new file处于未追踪状态，其余三种类型处于已追踪状态（已被纳入版本控制）。
 ```Bash
 #对于已追踪的文件所做的改变，可通过–am选项合并add和commit两个步骤
-git commit –am "this commit does what"。
+git commit –am "this commit does what"
 ```
 
 2)	git log  
@@ -111,7 +111,7 @@ git log –p                     //显示每次提交的内容差异
 删除和重命名也是常见的操作，在命令行中执行删除和重命名操作时，使用git rm和git mv与直接使用linux自带的rm和mv的区别在于：
 1. 使用git命令执行的操作同时作用于工作区和暂存区
 2. 而rm/mv属于工作区的操作，因而还要通过git add添加这些改变到暂存区。
-3. 带有\-\-statged选项的git rm，它仅从暂存区删除某文件而在工作区保留该文件。
+3. 带有\-\-cached选项的git rm，它仅从暂存区删除某文件而在工作区保留该文件。
 
 4)	git diff & git checkout  
 git diff用于比较不同区域的文件，git checkout用于恢复工作区文件。
@@ -215,7 +215,7 @@ git push origin --delete xxx  //从服务器上删除xxx分支
 每个分支都有独立的工作区和本地仓库，但是他们共享暂存区，所以从分支branch1切换到branch2时，branch1中未提交的更改对banch2也可见，而这通常不是我们所期望的，解决方法包括切换分支前提交所有更改，或者通过git stash解决。
 
 4)	git stash  
-将当前工作区和暂存区状态存储起来，并将工作区和暂存区恢复到上一次提交的状态（相当于执行了git reset hard HEAD）。
+将当前工作区和暂存区状态存储起来，并将工作区和暂存区恢复到上一次提交的状态（相当于执行了git reset \-\-hard HEAD）。
 ```Bash
 git stash [save] "message"
 git stash list
@@ -257,6 +257,45 @@ git reset --soft HEAD~3  //--soft选项重置HEAD指针，除此之外不做任�
 git reset [--mix] HEAD~3  //--mix是默认选项，重置并同时改变暂存区以匹配仓库
 git reset --hard HEAD~3  //--hard选项重置并同时改变暂存区和工作区以匹配仓库
 ```
+
+7) git cherry-pick
+合并某一个提交，当其他分支有某个更改，需要合并到当前分支时十分有效，因为可以只挑拣这一个提交合入，而不用涉及整个分支的合并。
+```Bash
+git cherry-pick commit_id
+git cherry-pick --continue
+git cherry-pick --quit
+git cherry-pick --abort
+```
+
+8) git format-patch & git am
+在代码远程共享、Email提交、代码迁移方面，Git提供了两种打补丁方式，一种是git diff生成地Linux补丁.diff文件，另一种是用git format-patch命令生成.patch 文件，相应地，应用补丁也有两种方式：git apply和git am。
+
+两种方式地主要区别是git format-patch为每次提交生成一个单独的.patch文件，并且保留committer和commit message等信息，利用git am应用补丁后无需再用git add & git commit提交。
+
+当应用补丁遇到冲突时，可以使用git apply --reject <patch_name>，强行打这个patch，发生冲突的部分文件file_name会保存为file_name.rej文件,未发生冲突的部分会成功打上patch，根据.rej文件编辑冲突文件，然后git am --abort再git am <patch_name>即可。
+```Bash
+git format-patch HEAD^
+git format-patch commit_id
+git format-patch commit_id1..commit_id2
+git am *.patch
+```
+
+# 高级话题
+
+### 子模块 submodule
+Git也为项目的模块化提供了支持，子模块允许你将一个Git仓库作为另一个Git仓库的子目录，它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立。具体参见https://git-scm.com/book/en/v2/Git-Tools-Submodules。
+
+### 分支模型 GitFlow
+GitFlow是一个久经考验的Git分支模型和工作流模型，可以使开发流程更加标准化，使协作更加高效。具体参见https://nvie.com/posts/a-successful-git-branching-model/。
+
+### Git服务器访问控制 Gitolite
+虽然Git是一个分布式的版本控制系统，但是为了方便协作，需要有一个主仓库，所有成员都将更改提交到这个主仓库，其他成员可以通过与主仓库同步以保持最新的状态，这个主仓库通常被称为Git服务器。
+
+Git本身对访问控制基本无能为力，而Gitolite是在Git之上的一个授权层，依托sshd或者httpd进行认证，能够提供便利且精细化的访问控制。Gitolite使用SSH协议时只能使用公钥+私钥的认证方式。
+
+有关Gitlite的安装、配置和管理，参见https://gitolite.com/gitolite/index.html。
+
+# 注意事项
 
 注1：git_test && git_test.git  
 在本章开头的示例中，我们提到git_test和git_test.git都可作为仓库名。实际上远程仓库git_test是一个裸仓库，裸仓库指的是没有工作区的仓库，可用git init \-\-bare初始化一个裸仓库。按照Git的惯例，裸仓库命名常以.git结尾，但这不是必须的。
