@@ -10,11 +10,8 @@ baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: https://github.com/lchang199x/lchang199x.github.io # you code repository
 theme_repo: https://github.com/Huxpro/huxpro.github.io # the theme repository
 
-# Sidebar settings
-sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Everything ends at some point!"
-sidebar-avatar: /img/about.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
-
+# Publish posts or collection documents with a future date.
+future: true
 
 
 # SNS settings
@@ -25,9 +22,10 @@ github_username:    lchang199x
 
 # Build settings
 # from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
+highlighter: rouge
 permalink: pretty
 paginate: 10
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
 anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 
 
@@ -44,15 +42,15 @@ gems: [jekyll-paginate]
 # although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
 # document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
-highlighter: rouge
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
+  syntax_highlighter_opts:
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
 
-
-
-# 评论系统
-# Disqus（https://disqus.com/）
-# disqus_username: lchang199x
 
 # Gitalk
 gitalk:
@@ -65,7 +63,10 @@ gitalk:
   distractionFreeMode: false #是否启用类似FB的阴影遮罩
 
 
-# 统计
+# Netease settings
+netease_comment: false
+
+
 
 # Analytics settings
 # Baidu Analytics
@@ -76,16 +77,25 @@ gitalk:
 # ga_domain: weenote.cn               # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
 
 
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "Everything ends at some point!"
+sidebar-avatar: /img/about.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
-featured-tags: true                     # 是否使用首页标签
-featured-condition-size: 1              # 相同标签数量大于这个数，才会出现在首页
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
 
 
 
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
 service-worker: true
+
+
+
+# MathJax rendering for layout:page (e.g. post preview)
+page-mathjax: false
 
 
 
