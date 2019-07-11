@@ -270,7 +270,7 @@ git cherry-pick --abort
 8) git format-patch & git am
 在代码远程共享、Email提交、代码迁移方面，Git提供了两种打补丁方式，一种是git diff生成地Linux补丁.diff文件，另一种是用git format-patch命令生成.patch 文件，相应地，应用补丁也有两种方式：git apply和git am。
 
-两种方式地主要区别是git format-patch为每次提交生成一个单独的.patch文件，并且保留committer和commit message等信息，利用git am应用补丁后无需再用git add & git commit提交。
+两种方式的主要区别是git format-patch为每次提交生成一个单独的.patch文件，并且保留committer和commit message等信息，利用git am应用补丁后无需再用git add & git commit提交。
 
 当应用补丁遇到冲突时，可以使用git apply --reject <patch_name>，强行打这个patch，发生冲突的部分文件file_name会保存为file_name.rej文件,未发生冲突的部分会成功打上patch，根据.rej文件编辑冲突文件，然后git am --abort再git am <patch_name>即可。
 ```Bash
@@ -282,18 +282,18 @@ git am *.patch
 
 # 高级话题
 
-### 子模块 submodule
-Git也为项目的模块化提供了支持，子模块允许你将一个Git仓库作为另一个Git仓库的子目录，它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立。具体参见https://git-scm.com/book/en/v2/Git-Tools-Submodules。
+#### 子模块 submodule
+Git也为项目的模块化提供了支持，子模块允许你将一个Git仓库作为另一个Git仓库的子目录，它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立。具体参见<https://git-scm.com/book/en/v2/Git-Tools-Submodules>。
 
-### 分支模型 GitFlow
-GitFlow是一个久经考验的Git分支模型和工作流模型，可以使开发流程更加标准化，使协作更加高效。具体参见https://nvie.com/posts/a-successful-git-branching-model/。
+#### 分支模型 GitFlow
+GitFlow是一个久经考验的Git分支模型和工作流模型，可以使开发流程更加标准化，使协作更加高效。具体参见<https://nvie.com/posts/a-successful-git-branching-model/>。
 
-### Git服务器访问控制 Gitolite
+#### Git服务器访问控制 Gitolite
 虽然Git是一个分布式的版本控制系统，但是为了方便协作，需要有一个主仓库，所有成员都将更改提交到这个主仓库，其他成员可以通过与主仓库同步以保持最新的状态，这个主仓库通常被称为Git服务器。
 
 Git本身对访问控制基本无能为力，而Gitolite是在Git之上的一个授权层，依托sshd或者httpd进行认证，能够提供便利且精细化的访问控制。Gitolite使用SSH协议时只能使用公钥+私钥的认证方式。
 
-有关Gitlite的安装、配置和管理，参见https://gitolite.com/gitolite/index.html。
+有关Gitlite的安装、配置和管理，参见<https://gitolite.com/gitolite/index.html>。
 
 # 注意事项
 
