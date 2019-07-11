@@ -288,7 +288,7 @@ Git也为项目的模块化提供了支持，子模块允许你将一个Git仓�
 #### 分支模型 GitFlow
 GitFlow是一个久经考验的Git分支模型和工作流模型，可以使开发流程更加标准化，使协作更加高效。具体参见<https://nvie.com/posts/a-successful-git-branching-model/>。
 
-#### Git服务器访问控制 Gitolite
+#### Git服务器 Gitolite
 虽然Git是一个分布式的版本控制系统，但是为了方便协作，需要有一个主仓库，所有成员都将更改提交到这个主仓库，其他成员可以通过与主仓库同步以保持最新的状态，这个主仓库通常被称为Git服务器。
 
 Git本身对访问控制基本无能为力，而Gitolite是在Git之上的一个授权层，依托sshd或者httpd进行认证，能够提供便利且精细化的访问控制。Gitolite使用SSH协议时只能使用公钥+私钥的认证方式。
