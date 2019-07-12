@@ -7,8 +7,6 @@ description: "Chang's Homepage"
 keyword: "Chang's Homepage, Weenote developer Blog"
 url: "http://lchang199x.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: https://github.com/lchang199x/lchang199x.github.io # you code repository
-theme_repo: https://github.com/Huxpro/huxpro.github.io # the theme repository
 
 # Publish posts or collection documents with a future date.
 future: true
@@ -32,8 +30,9 @@ anchorjs: true                          # if you want to customize anchor. check
 
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
-gems: [jekyll-paginate]
-
+# make sure you have this gem installed
+# `$ gem install jekyll-paginate`
+plugins: [jekyll-paginate]
 
 
 
