@@ -46,7 +46,7 @@ tags:
 
 6) 多版本jdk安装和切换，以及环境变量的配置  
 修改/etc/profile全局配置，或~/.bashrc用户配置)
-```Bash
+```bash
 export JAVA_HOME=/usr/lib/jdk6/jdk1.6.0_45
 export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
@@ -99,7 +99,7 @@ SystemAccount=true
 
 SMB协议基于IBM的NETBIOS协议，即网络基本输入输出协议，后者可以运行在多种传输协议上，如NETBIOS over TCP/IP
 
-```Bash
+```bash
 smbclient -L server 查看
 smbclient //server/file 连接
 #编辑文件/etc/samba/smb.conf可设置共享，应该用smbpasswd为samba设置单独密码
@@ -162,7 +162,7 @@ vmrun -T ws start "**/Ubuntu16.04.vmx" nogui > nul
 16) BIOS是硬件自带的，bootloader是安装操作系统时装到磁盘MBR或启动扇区上的，bootloader的主要功能是提供菜单+载入内核+将开机管理功能转交给其他bootloader，当然最终是为了载入内核
 
 17) 双系统造成的windows时间错乱
-```Bash
+```bash
 #先在ubuntu下更新一下时间，确保时间无误：
 sudo apt install ntpdate
 sudo ntpdate time.windows.com

@@ -17,7 +17,7 @@ tags:
 # 准备工作
 
 1.在`Linux`环境下，检查`gcc`配置
-```Bash
+```bash
 #查看gcc是否安装
 which gcc
 
@@ -29,7 +29,7 @@ gcc --help
 ```
 
 2.`HelloWorld`，其他程序不一一列出
-```C
+```c
 #include <stdio.h>
 
 int
@@ -42,7 +42,7 @@ main (void)
 
 # 简单用法
 
-```Bash
+```bash
 #简单用法
 gcc hello.c
 
@@ -69,7 +69,7 @@ gcc -O2 hello.c
 
 默认情况下，`gcc`：1）只提示出错信息；2）生成的可执行文件为`a.out`；3）中间过程生成的文件不会保存。
 
-```Bash
+```bash
 #-o选项指定输出文件名，通常作为最后一个选项
 gcc hello.c -o hello
 
@@ -90,7 +90,7 @@ gcc -Wall hello.c -o hello
 
 将一个程序分成多个源文件，更利于编辑和理解，也使得各部分的单独编译成为可能。
 
-```Bash
+```bash
 #头文件hello.h不用包含在命令行中
 #include预处理指令会指导编译器在合适的时候自动包含头文件
 #include "" 在查找系统头文件目录之前，先搜索当前文件夹
@@ -114,7 +114,7 @@ gcc -c main1.c main2.c
 
 `GUN Make`是一个实用工具，可自动化地决定程序中的哪些部分需要重新编译。
 
-```Bash
+```bash
 #默认产生目标文件hello.o，可用-o选项指定其他文件名
 gcc -Wall -c hello.c
 
@@ -132,7 +132,7 @@ gcc hello.o hello1.o -o hello
 
 `gcc`编译时调用的预处理器为`cpp`，汇编器为`as`，链接器为`ld`，我们既可以通过`gcc`的选项，也可以直接来使用它们。
 
-```Bash
+```bash
 #预处理
 gcc -E -o hello.i hello.c
 
@@ -165,7 +165,7 @@ ld -o hello hello.o xx1.o xx2.o ...
 
 #### 静态库
 
-```Bash
+```bash
 #每个编译器都会默认链接libc.a，但是很多编译器并不默认链接libm.a
 #与之不同的是，IDE一般都把常用的库都放在linker的search path里
 #生成静态链接库
@@ -195,7 +195,7 @@ gcc -Wall calc.c -lm -o calc
 
 #### 动态库
 
-```Bash
+```bash
 #生成动态链接库
 #-fPIC选项产生适合动态链接库使用的位置无关机器码Position-Independent Code
 #-shared选项此处指定生成动态链接库

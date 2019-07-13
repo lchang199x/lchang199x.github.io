@@ -38,7 +38,7 @@ Json的MIME类型是application/json。
 
 对于特殊字符，需要用反斜杠\进行转义：比如双引号\"content\"，反斜杠本身\\，以及任意unicode字符\u263A。
 
-```
+```javascript
 //JSON字符串，Javascript字符串用单引号和双引号皆可，JavaScript 变量均为对象
 var jsonString = '{"animal":"cat"}';
 
