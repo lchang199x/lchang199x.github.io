@@ -50,7 +50,7 @@ tags:
 export JAVA_HOME=/usr/lib/jdk6/jdk1.6.0_45
 export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
-#此时$PATH附加在JAVA_HOME后边，update-alternatives命令切换程序版本无效，可可将$PATH放在JAVA_HOME前面，然后执行
+#应将$PATH放在$JAVA_HOME前面，否则update-alternatives命令切换程序版本无效
 export PATH=${JAVA_HOME}/bin:$PATH
 
 #为软链接/usr/bin/java和/usr/bin/javac添加对应的替代程序
@@ -107,7 +107,7 @@ sudo smbpasswd -a existing_linux_user
 sudo service smbd restart 使生效
 ```
 24) Linux命令行挂载smb共享
-```
+```bash
 #回车要求输入密码
 #其中-o为option的缩写，挂载点必须存在，挂载之后里面的内容无法使用，卸载后恢复可用
 sudo mount -t cifs //server <mount-point> -o user=xxx[,pass=xxx]
@@ -144,10 +144,10 @@ sudo umonut <mount-point>
 
 11) Windows配置开机启动虚拟机  
 运行 > gpedit.msc > 用户配置 > windows设置 > 脚本(登录/注销)
-```
+```bash
 #开机脚本如下
-:: vmrun.bat
-:: vmware installation dir should be added to the PATH variable
+#vmrun.bat
+#vmware installation dir should be added to the PATH variable
 vmrun -T ws start "**/Ubuntu16.04.vmx" nogui > nul
 ```
 
