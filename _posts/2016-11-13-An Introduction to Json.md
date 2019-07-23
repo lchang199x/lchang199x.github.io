@@ -127,4 +127,6 @@ Collection<Integer> collection
 
 # 高级话题
 
-#### Protocol Buffers
+#### Protocol Buffer
+`Protocol Buffer (Protobuf)`是由Google开源的一种序列化结构化数据的机制，通过.proto文件来定义，然后通过相应编译器编译成对应语言的数据访问类。Protobuf可用于数据传输及数据存储，和xml, json相比具有更好的性能。扩展阅读：[官方网站](https://developers.google.cn/protocol-buffers/) & [在Android中的应用](https://github.com/google/protobuf-gradle-plugin)。
+
