@@ -104,6 +104,9 @@ friends: [
         title: "Android Developer",
         href: "https://developer.android.google.cn/"
     },{
+        title: "Java Specification",
+        href: "https://docs.oracle.com/javase/specs/jls/se8/html/index.html"
+    },{
         title: "Google Samples",
         href: "https://github.com/googlesamples"
     },{
