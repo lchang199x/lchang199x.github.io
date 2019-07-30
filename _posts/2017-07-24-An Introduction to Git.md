@@ -151,7 +151,7 @@ ssh user@host pwd && ls   #先要有user和host,别傻傻运行这个例子
 git clone ssh://user@host/path/to/repo  #host是Git服务器，user是host上的用户
 git clone user@host:/path/to/repo      #scp格式的url写法，无ssh://，有分号
 #以下四种写法作用相同
-#它试图以user用户的身份，去克隆远程主机host上r用户家目录下的git_test仓库
+#它试图以user用户的身份，去克隆远程主机host上user用户家目录下的git_test仓库
 #回车后会要求输入用户密码passwd，输入确认后会在当前目录克隆一个git_test仓库
 git clone ssh://user@host/home/user/git_test
 git clone user@host:~user/git_test
