@@ -5,11 +5,9 @@ subtitle:   Presentation in Baidu IoV Unit
 date:       2019-03-08
 author:     Cliu
 header-img: img/post-daily-bg.jpg
-catalog: true
+catalog: false
 tags:
-    - IoV
     - Academia
-    - Career
     - Presentation
 ---
 

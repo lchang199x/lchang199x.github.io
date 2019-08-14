@@ -121,5 +121,8 @@ friends: [
     },{
         title: "Library Genesis",
         href: "http://gen.lib.rus.ec/"
+    },{
+        title: "Chinese Text Project",
+        href: "https://ctext.org/"
     }
 ]

@@ -7,7 +7,6 @@ author:     Cliu
 header-img: img/post-daily-bg.jpg
 catalog: true
 tags:
-    - Java
     - Regular Expression
     - An Introduction to
 ---

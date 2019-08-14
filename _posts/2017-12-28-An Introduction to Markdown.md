@@ -8,7 +8,6 @@ header-img: img/post-daily-bg.jpg
 catalog: true
 tags:
     - Markdown
-    - Github
     - An Introduction to
 ---
 
