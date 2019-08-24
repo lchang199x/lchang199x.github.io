@@ -194,7 +194,8 @@ Git push命令中+和-f的含义：
 3. 联想git merge的\-\-no-ff选项要求不采用快进方式（试图直接移动HEAD指针）
 
 3)	git branch & git merge  
-Git的分支就是一个指向commit id的指针，新建仓库时都会默认创建master分支，可用git branch -a查看所有分支(本地&远程)，形如origin/master的分支称为远程追踪分支，它存在于本地并引用/指向远程分支（位于Git服务器），不混淆的情况下也直接称origin/master为远程分支。git fetch origin会建立/更新所有远程跟踪分支，然后作为起始点新建分支。
+Git的分支就是一个指向commit id的指针，新建仓库时都会默认创建master分支，可用git branch -a查看所有分支(本地&远程)，形如origin/master的分支称为远程追踪分支，它存在于本地并引用/指向远程分支（位于Git服务器），不混淆的情况下也直接称origin/master为远程分支。
+git fetch origin会建立/更新所有远程跟踪分支，然后作为起始点新建分支，拉取git pull=抓取git fetch+合并 git merge。
 常见分支操作如下：
 ```bash
 git branch          #查看本地分支，-r查看远程分支，-a查看所有分支
@@ -300,20 +301,21 @@ Git本身对访问控制基本无能为力，而Gitolite是在Git之上的一个
 # 注意事项
 
 #### 裸仓库
-在本章开头的示例中，我们提到git_test和git_test.git都可作为仓库名。实际上远程仓库git_test是一个裸仓库，裸仓库指的是没有工作区的仓库，可用git init \-\-bare初始化一个裸仓库。按照Git的惯例，裸仓库命名常以.git结尾，但这不是必须的。
+在本文开头的示例中，我们提到git_test和git_test.git都可作为仓库名。实际上远程仓库git_test是一个裸仓库，裸仓库指的是没有工作区的仓库，可用git init \-\-bare初始化一个裸仓库。按照Git的惯例，裸仓库命名常以.git结尾，但这不是必须的。
 
 只有裸仓库才能接受git push推送，因此Git服务器上的仓库都应该是裸仓库。在Git命令中用到裸仓库时，扩展名.git是可选的，因此例子中用的都是git_test，也可以写成git_test.git。
 
 #### SSH认证
-在本章开头的示例中，我们以用户名(user)+密码(passwd)的方式访问远程主机，这时如果要实现访问控制，就需要远程主机为每个客户新建一个账号。实际上，SSH协议还提供了一种更加方便的认证方式，即公钥(xxx.pub)+私钥(xxx)的方式。
+在克隆远程仓库的示例中，我们以用户名(user)+密码(passwd)的方式访问远程主机，这时如果要实现访问控制，就需要远程主机为每个客户新建一个账号。实际上，SSH协议还提供了一种更加方便的认证方式，即公钥(xxx.pub)+私钥(xxx)的方式。
 
 用户可使用ssh-keygen命令生成自己的公钥和私钥，默认会在~/.ssh目录下生成公钥id_rsa.pub和私钥id_rsa。只需将公钥发送给远程主机，由远程主机管理员将公钥内容附加到~user/.ssh/authorized_keys文件中，下次访问即无需密码。
 
 #### 虚拟机作为远程仓库  
 当Git服务器不是一台实际的电脑，而是一台虚拟机时。要使虚拟机成为局域网中的一员，能被局域网用户访问，比较方便的做法是：在[虚拟机—>设置—>网络适配器]中将网络连接设置成[桥接模式]，然后开启虚拟机并正确配置其IP地址。
 
-#### tracking branch && upstream branch  
-设置本地分支追踪某个远程分支，就可以直接git pull拉取（=抓取fetch+合并merge）
+#### 跟踪分支 tracking branch
+远程跟踪分支以`<remote>/<branch>`的形式命名，它引用着最近一次连接远程分支时远程分支的状态。从远程跟踪分支检出的本地分支就叫跟踪分支，它所跟踪的远程分支被称为上游分支(upstream branch)。
+在一个跟踪分支上输入 git pull，Git能自动地识别去哪个服务器上抓取、合并到哪个分支。
 1. git clone的仓库会自动创建tracking branch
 2. 第一次push加-u可创建tracking branch
 3. git branch –u origin/branch1修改上游分支
