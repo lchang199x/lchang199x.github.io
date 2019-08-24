@@ -11,7 +11,7 @@ tags:
     - Presentation
 ---
 
->As a part of my work review, I gave a presetation on Internet of Vehicles this afternoon in Baidu IoV Unit, the slides can be found below.
+>As a part of my work review, I gave a presentation on Internet of Vehicles this afternoon in Baidu IoV Unit, the slides can be found below.
 
 <style type="text/css">img {border: solid 0.8px #b8b8b8}</style>
 
