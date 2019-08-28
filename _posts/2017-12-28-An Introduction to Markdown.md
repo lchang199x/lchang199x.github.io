@@ -14,16 +14,15 @@ tags:
 >本文针对 Github Flavored Markdown
 
 ## 标题
-```
-## 标题 1
-### 标题 2
+```markdown
+# 标题 1
+## 标题 2
 ...
-####### 标题 6
+###### 标题 6 // at most 6 levels
 ```
 
 ## 强调、突出、删除
-```
-
+```markdown
 *突出*
 
 **强调**
@@ -38,19 +37,19 @@ __强调__
 ## 链接
 
 自动链接
-```
+```markdown
 https://github.com
 
 <lchang199x@gmail.com>   //email is a kind of link
 ```
 
 内联风格 (title 是可选的):
-```
+```markdown
 [GitHub](https://github.com "title")
 ```
 
 引用风格 (title 是可选的):
-```
+```markdown
 [GitHub][ref]
 ······
 [ref]: https://github.com/    //somewhere else
@@ -59,19 +58,19 @@ https://github.com
 ### 图片
 
 内联风格 (title 是可选的):
-```
+```markdown
 ![alt text](未标题-1.png "title")
 ```
 
 引用风格 (title 是可选的):
-```
+```markdown
 ![alt text][id]
 ······
 [id]: 未标题-1.png
 ```
 
 ## 列表
-```
+```markdown
 有序列表:
 
 1. 列表项 1
@@ -101,17 +100,17 @@ https://github.com
 ```
 
 ## 引用
-```
+```markdown
 > 段落前面添加大于号和空格，就能够形成引用段落。 > > 这是嵌套的引用。
 ```
 
 ## 内联代码
-```
+```markdown
 `内联代码` 使用反引号包含 你也可以像 `` `这样` `` 转义反引号
 ```
 
 ## 代码块
-```
+```markdown
 每行缩进4个空格或者1个 tab：
 
 这是一个正常的段落。
@@ -140,21 +139,21 @@ if(true){
 ## 表格
 
 这是个简单的表格:
-```
+```markdown
 First Header | Second Header | Third Header
 ------------ | ------------- | ------------
 Content Cell | Content Cell | Content Cell
 Content Cell | Content Cell | Content Cell
 ```
 出于美观的考虑, 可以把两端都包围起来:
-```
+```markdown
 | First Header | Second Header | Third Header |
 | ------------ | ------------- | ------------ |
 | Content Cell | Content Cell | Content Cell |
 | Content Cell | Content Cell | Content Cell |
 ```
 通过在标题分割行添加冒号 : ,可以定义表格单元的对其格式：向左靠齐，居中和向右靠齐：
-```
+```markdown
 First Header | Second Header | Third Header
 :----------- | :-----------: | -----------:
 Left | Center | Right
