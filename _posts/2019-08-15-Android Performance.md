@@ -8,7 +8,6 @@ header-img: img/post-daily-bg.jpg
 catalog: true
 tags:
     - Android
-    - Performance
 ---
 
 > 本文为Google官方系列Android性能优化课程整理，[课程地址](https://cn.udacity.com/course/android-performance--ud825)
@@ -46,5 +45,9 @@ And honestly these first two stages of gathering data and then gaining insight, 
 
 * But of course that leads us to the third step, `take action`. This is often the most difficult part of the loop this is where you take all the numbers and all the insight, and know where the problem is, and then you have to go convince the other programmers the right way to fix it. Of the three stages, this has the most human component to it. Because solving the problem isn't enough, you need to solve it in a way that meets your coding standards for your complexity or your company or takes in account libraries or a particular module or a platform that you're running on, or other crazy restrictions that your code base might have. Before your solution is accepted, you usually have to take all of these things into account.
 
-### Tools not Rules
-But before you run off into the weeds and become a performance engineer I have one small piece of warning about performance. Throughout this course we'll be teaching you what's going on under the hood of Android and teaching you how to use the tooling to gain insight into some of those actions. Some of that content is going to be prescriptive like if you see this, it means this, so do that. But in honest, that might not always be the case for every application sure something may be inefficient but if it's not impacting your performance, it's not worth stressing over. This is why we like to say, `tools not rules`, while it's important to understand the rules and the flow of things, you need to validate the true real issues by trusting what your tools say first. It may not make sense for you to solve a problem that you actually don't have. Always go back to the data and validate the true nature of a problem, decide if it's a problem, before moving on to the optimization process. You've been warned, 
+### Warning: Tools not Rules
+But before you run off into the weeds and become a performance engineer I have one small piece of warning about performance.
+
+Throughout this course we'll be teaching you what's going on under the hood of Android and teaching you how to use the tooling to gain insight into some of those actions. Some of that content is going to be prescriptive like if you see this, it means this, so do that. But in honest, that might not always be the case for every application sure something may be inefficient but if it's not impacting your performance, it's not worth stressing over.
+
+This is why we like to say, `tools not rules`, while it's important to understand the rules and the flow of things, you need to validate the true real issues by trusting what your tools say first. It may not make sense for you to solve a problem that you actually don't have. Always go back to the data and validate the true nature of a problem, decide if it's a problem, before moving on to the optimization process. You've been warned, 
