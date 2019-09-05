@@ -14,7 +14,7 @@ tags:
 
 ## Lesson 1: Introduction
 
-### Why: Developers' Last Thing vs Users First Concern
+### Why: Developers' Last Thing vs Users' First Concern
 For the majority of Android developers out there, the concept of performance is the last thing on their minds.
 
 Most app development is a mad sprint towards getting features in, making the UI look perfect, and figuring out a viable monetization strategy, or a lack thereof if you're in Silicon Valley.
