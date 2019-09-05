@@ -7,7 +7,6 @@ author:     Cliu
 header-img: img/post-daily-bg.jpg
 catalog: false
 tags:
-    - Academia
     - Presentation
 ---
 
