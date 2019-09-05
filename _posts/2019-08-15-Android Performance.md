@@ -2,7 +2,7 @@
 layout:     post
 title:      "Android Performance: Introduction"
 subtitle:   Android系统性能：引入
-date:       2019-03-08
+date:       2019-08-15
 author:     Cliu
 header-img: img/post-daily-bg.jpg
 catalog: true
@@ -13,7 +13,7 @@ tags:
 
 > 本文为Google官方系列Android性能优化课程整理，[课程地址](https://cn.udacity.com/course/android-performance--ud825)
 
-## Lession 1: Introduction
+## Lesson 1: Introduction
 
 ### Why: Developers' Last Thing vs Users First Concern
 For the majority of Android developers out there, the concept of performance is the last thing on their minds.
