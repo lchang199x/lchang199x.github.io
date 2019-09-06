@@ -12,8 +12,6 @@ tags:
 
 > 本文为Google官方系列[Android性能优化](https://cn.udacity.com/course/android-performance--ud825)课程整理
 
-## Introduction
-
 ### Developers' Last Thing vs Users' First Concern
 For the majority of Android developers out there, the concept of performance is the last thing on their minds.
 

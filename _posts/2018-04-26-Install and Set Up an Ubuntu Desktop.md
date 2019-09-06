@@ -12,7 +12,7 @@ tags:
 
 >以下实践经验总结，错误之处难免。
 
-# 虚拟机：VMware安装Ubuntu
+### 虚拟机：VMware安装Ubuntu
 1) 在VMware中依次点击文件-->新建虚拟机，调出新建虚拟机向导。
 
 2) 指定系统镜像ISO文件，填写主机名和用户名，指定虚拟机名称，确认创建。
@@ -23,7 +23,7 @@ tags:
 
 5)安装vmware tools，注销并重新登陆生效，有时无法和windows互相复制粘贴，就需要手动执行/usr/bin/vmware-user.
 
-# 双系统：Win10+Ubuntu
+### 双系统：Win10+Ubuntu
 1) Win10下按win+x快捷键依次点击计算机管理-->磁盘管理，右击某磁盘选择压缩卷分出一块空间，保持空闲，或通过diskgenieus删除某分区使其空闲。
 
 2) 用Ubuntu推荐的rufus工具将ISO写入U盘，重启按F12选择从上述U盘启动，在首界面选择安装Ubuntu。
@@ -32,7 +32,7 @@ tags:
 
 4) 安装完成后，在Win10下用EasyBCD添加新入口，重启即可选择要进入的系统。
 
-# 配置：打造一个可用的Linux操作环境
+### 配置：打造一个可用的Linux操作环境
 1) 安装vim
 
 2) 编辑/etc/apt/sources.list更换源，执行apt update && apt upgrade更新升级
@@ -114,7 +114,7 @@ sudo umonut <mount-point>
 ```
 
 
-# 注意事项
+### 注意事项
 
 1)「权限」无小事
 
