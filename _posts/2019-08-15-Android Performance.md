@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Android Performance: Introduction"
-subtitle:   Android系统性能：引入
+subtitle:   Android系统性能 (1)
 date:       2019-08-15
 author:     Cliu
 header-img: img/post-daily-bg.jpg
@@ -10,11 +10,11 @@ tags:
     - Android
 ---
 
-> 本文为Google官方系列Android性能优化课程整理，[课程地址](https://cn.udacity.com/course/android-performance--ud825)
+> 本文为Google官方系列[Android性能优化](https://cn.udacity.com/course/android-performance--ud825)课程整理
 
-## Lesson 1: Introduction
+## Introduction
 
-### Why: Developers' Last Thing vs Users' First Concern
+### Developers' Last Thing vs Users' First Concern
 For the majority of Android developers out there, the concept of performance is the last thing on their minds.
 
 Most app development is a mad sprint towards getting features in, making the UI look perfect, and figuring out a viable monetization strategy, or a lack thereof if you're in Silicon Valley.
@@ -29,10 +29,10 @@ It's easy little side of performance as you're developing your app. But frankly 
 
 But in honesty, improving performance is a really tough thing to do.
 
-### How: Know Why It's Slow & Know the Tools
+### Know Why It's Slow & Know the Tools
 Fixing these problems means knowing why it's slow, which means knowing how to use the right tools in the right ways to get insight into that data. But don't worry. Everything in this Udacity course has been specifically built around helping you know the tools, see how problems manifest in them, and understanding what they mean from a theory prospective. Basically, it's everything that you need to become a performance ninja. I'm Colt, this is Chris, let's get started.
 
-### Process: Three Steps
+### Three Steps
 The process of improving application performance can be a daunting task, but it's actually much simpler than that. Once you shift gears into focusing on performance problems, you've now entered what we call the performance improvement life-cycle. It's a very small set of tasks you must perform, to find and fix a problem.
 
 It namely consists of three steps.
@@ -45,7 +45,7 @@ And honestly these first two stages of gathering data and then gaining insight, 
 
 * But of course that leads us to the third step, `take action`. This is often the most difficult part of the loop this is where you take all the numbers and all the insight, and know where the problem is, and then you have to go convince the other programmers the right way to fix it. Of the three stages, this has the most human component to it. Because solving the problem isn't enough, you need to solve it in a way that meets your coding standards for your complexity or your company or takes in account libraries or a particular module or a platform that you're running on, or other crazy restrictions that your code base might have. Before your solution is accepted, you usually have to take all of these things into account.
 
-### Warning: Tools not Rules
+### Tools not Rules
 But before you run off into the weeds and become a performance engineer I have one small piece of warning about performance.
 
 Throughout this course we'll be teaching you what's going on under the hood of Android and teaching you how to use the tooling to gain insight into some of those actions. Some of that content is going to be prescriptive like if you see this, it means this, so do that. But in honest, that might not always be the case for every application sure something may be inefficient but if it's not impacting your performance, it's not worth stressing over.
