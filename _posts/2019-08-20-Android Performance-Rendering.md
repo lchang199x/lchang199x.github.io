@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Android Performance: Render"
+title:      "Android Performance: Rendering"
 subtitle:   Android系统性能 (2)
 date:       2019-08-20
 author:     Cliu
