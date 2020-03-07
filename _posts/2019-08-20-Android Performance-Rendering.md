@@ -10,28 +10,28 @@ tags:
     - Android
 ---
 
-> 本文为Google官方系列[Android性能优化](https://cn.udacity.com/course/android-performance--ud825)课程整理
+> Based on course materials of [Android Performance](https://cn.udacity.com/course/android-performance--ud825) by Google
 
 ### Dialogue: Intro
-*\>Huh. 140 grams of fiber. Why would you need that much?  
-\>Hey. Morning, Colt.  
-\>Hey, Chris. What's going on?  
-\>How's it going? I'm just recovering from a long day yesterday. I spent all day making this new app. It's got a material theme, some tasteful animations, a nice transition. When I tilt the screen, look at that, it subtly adjusts the color scheme.  
-\>Nice!  
-\>Pretty slick huh?  
-\>Yeah, it looks really good, Chris, but you know your application is running really slow, right?  
-\>Yeah, for some reason, Android feels a bit slow. I mean, I think you guys might need to tune it up a bit. It would make our lives a little easier.  
-\>Ha ha. I'm going to let that one slide. Why don't you back up and tell me what you're doing to create this transcendent experience of yours.  
-\>Yeah, sure. So to get this nice color blending happening here, I have to layer a bunch of views, color them, and then when I animate them, I actually have to cut out circles, redraw them back to the screen. And as the user scrolls, I apply this cool new animation to draw the new content on top of the old. I might even put an Easter egg right there.  
-\>Okay. Timeout, Chris. I think you are violating some of the principles of modern application performance design. Just because you can overlay 90 views that are animating and transparent, doesn't mean you actually should.  
-\>Okay. But that's the user experience that seems to be selling these days. If it runs slow, it's Android's problem, right? Not mine.  
-\>No, you gotta remem, put it this way, Chris. You wouldn't use bubble sort on an array that's got 20 million elements in it, would you?  
-\>That's true. I'd probably use some, something way faster like merge sort or quick sort.  
-\>See exactly. You gotta remember that the Android system is doing a ton of work to make things fast and look beautiful, but you still have to live up to your end of the bargain and do a little lifting too, right? All of those overlays and transparencies are beautiful, but they actually have an implicit performance cost that comes with them. This is why `rendering performance` is one of the biggest pitfalls that most developers fall into.  
-\>Right.  
-\>They spend so much time making these beautiful visuals. They forget all of the performance cost that comes along with it.  
-\>All right, well. But, I still want to keep this user experience. So, how do I make it fast?  
-\>Huh. That's the easy part, Chris. You watch some videos.*
+*&gt;&gt; Huh. 140 grams of fiber. Why would you need that much?  
+&gt;&gt; Hey. Morning, Colt.  
+&gt;&gt; Hey, Chris. What's going on?  
+&gt;&gt; How's it going? I'm just recovering from a long day yesterday. I spent all day making this new app. It's got a material theme, some tasteful animations, a nice transition. When I tilt the screen, look at that, it subtly adjusts the color scheme.  
+&gt;&gt; Nice!  
+&gt;&gt; Pretty slick huh?  
+&gt;&gt; Yeah, it looks really good, Chris, but you know your application is running really slow, right?  
+&gt;&gt; Yeah, for some reason, Android feels a bit slow. I mean, I think you guys might need to tune it up a bit. It would make our lives a little easier.  
+&gt;&gt; Ha ha. I'm going to let that one slide. Why don't you back up and tell me what you're doing to create this transcendent experience of yours.  
+&gt;&gt; Yeah, sure. So to get this nice color blending happening here, I have to layer a bunch of views, color them, and then when I animate them, I actually have to cut out circles, redraw them back to the screen. And as the user scrolls, I apply this cool new animation to draw the new content on top of the old. I might even put an Easter egg right there.  
+&gt;&gt; Okay. Timeout, Chris. I think you are violating some of the principles of modern application performance design. Just because you can overlay 90 views that are animating and transparent, doesn't mean you actually should.  
+&gt;&gt; Okay. But that's the user experience that seems to be selling these days. If it runs slow, it's Android's problem, right? Not mine.  
+&gt;&gt; No, you gotta remem, put it this way, Chris. You wouldn't use bubble sort on an array that's got 20 million elements in it, would you?  
+&gt;&gt; That's true. I'd probably use some, something way faster like merge sort or quick sort.  
+&gt;&gt; See exactly. You gotta remember that the Android system is doing a ton of work to make things fast and look beautiful, but you still have to live up to your end of the bargain and do a little lifting too, right? All of those overlays and transparencies are beautiful, but they actually have an implicit performance cost that comes with them. This is why `rendering performance` is one of the biggest pitfalls that most developers fall into.  
+&gt;&gt; Right.  
+&gt;&gt; They spend so much time making these beautiful visuals. They forget all of the performance cost that comes along with it.  
+&gt;&gt; All right, well. But, I still want to keep this user experience. So, how do I make it fast?  
+&gt;&gt; Huh. That's the easy part, Chris. You watch some videos.*
 
 ### Rendering Performance
 Rendering performance is the most common performance issue that you run into while building your app. On one hand, your designers want to produce the most usable transcendent experience for your users, but on the other hand, all those fancy graphics and transitions may not work well on every single device.
@@ -208,10 +208,10 @@ Now, let's see how we can orient them in a relative nature. So, for example, we 
 All right, so the main idea is that when you're revisiting and refactoring your layouts, see if you can look for opportunities where you might have inefficiencies like nesting, and replace them with implementations that are a bit more flat, like this relative layout design. All right, that was great, thanks a lot.
  
 ### Dialogue: Outro
-*\>Huh. So Chris, how did that rendering performance go the other day?  
-\>Oh, man, everything's great. It's back to being superfast.  
-\>Yeah.  
-\>You know, I hate to say it I think you were right.  
-\>Well Chris. It's not about being right or wrong, even though I'm right. It's about understanding that in the mobile application development space, it's all about trade offs, right? You have to make performance conscious decisions between the features you want and the applications and devices that people are going to be running on. You can't just run off into the weeds, make whatever you want, and then get mad at the system when it doesn't perform the way you want it to.  
-\>Yeah, I know. That's totally fair. Oh wait. With all of that extra frame time, more animations.  
-\>Well, wait, no, Chris, that's not what I was talk-*
+*&gt;&gt; Huh. So Chris, how did that rendering performance go the other day?  
+&gt;&gt; Oh, man, everything's great. It's back to being superfast.  
+&gt;&gt; Yeah.  
+&gt;&gt; You know, I hate to say it I think you were right.  
+&gt;&gt; Well Chris. It's not about being right or wrong, even though I'm right. It's about understanding that in the mobile application development space, it's all about trade offs, right? You have to make performance conscious decisions between the features you want and the applications and devices that people are going to be running on. You can't just run off into the weeds, make whatever you want, and then get mad at the system when it doesn't perform the way you want it to.  
+&gt;&gt; Yeah, I know. That's totally fair. Oh wait. With all of that extra frame time, more animations.  
+&gt;&gt; Well, wait, no, Chris, that's not what I was talk-*
