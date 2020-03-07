@@ -74,11 +74,7 @@ And to be clear, the Android engineers have spent a lot of time making sure that
 
 * Secondly, understand that your code flow may be doing the kinds of work that force GCs to occur more often, or making them last longer than normal duration. For example, if you're allocating a hoard of objects in the inner most part of a loop that runs for a long time, then you're going to be polluting your memory heap with a lot of objects and you'll end up kicking off a lot of GCs quickly, due to this additional memory pressure.
 
-<<<<<<< HEAD
 And even though we're in a managed memory environment, memory leaks can still happen. Although they're not as easy to create as the other languages. These leaks can pollute your heat with objects that won't get freed during a GC event, effectively `reducing the amount of usable space you have` and `forcing more GC events to be kicked off`, in a regular fashion as a result. So that's the deal, I mean, if you want to reduce the amount of GC events that happen in a given frame, then you need to focus on optimizing your app's memory usage.
-=======
-And even though we're in a managed memory environment, memory leaks can still happen. Although they're not as easy to create as the other languages. These leaks can pollute your heap with objects that won't get freed during a GC event, effectively `reducing the amount of usable space you have` and `forcing more GC events to be kicked off`, in a regular fashion as a result. So that's the deal, I mean, if you want to reduce the amount of GC events that happen in a given frame, then you need to focus on optimizing your app's memory usage.
->>>>>>> Merge branch 'master' of https://github.com/lchang199x/lchang199x.github.io
 
 From a code perspective, it might be difficult to track down where problems like these are coming from, but thankfully, the Android SDK has a set of powerful tools at your disposal. Let's take a look. 
 
