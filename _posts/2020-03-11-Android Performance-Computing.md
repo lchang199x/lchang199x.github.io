@@ -17,7 +17,7 @@ tags:
 ### Dialogue: Intro
 *&gt;&gt; Hey cool.  
 &gt;&gt; Hey what's going on man?  
-&gt;&gt; So I found this stack overflow post, that says if I change the syntax of my for loop, and use a pre-increment over post-incrementor, I'll get like a hundred x performance on my for loops. Pretty awesome yeah?
+&gt;&gt; So I found this stack overflow post, that says if I change the syntax of my for loop, and use a pre-increment over post-incrementor, I'll get like a hundred x performance on my for loops. Pretty awesome yeah?  
 &gt;&gt; Mm, that's not a thing, Chris.  
 &gt;&gt; What do you mean? That seems really useful, all I need to do is plus plus i versus i plus plus, I mean, then I get a boost for every loop I write.  
 &gt;&gt; Chris you should probably stop now, I mean we are recording, it's, it's not a thing.  
