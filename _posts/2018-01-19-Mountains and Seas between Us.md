@@ -5,6 +5,7 @@ subtitle:   万水千山
 date:       2018-01-19
 author:     Cliu
 header-img: img/post-daily-bg.jpg
+header-style: text
 catalog: false
 tags:
     - Literature
