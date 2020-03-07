@@ -289,18 +289,18 @@ git am *.patch
 Git也为项目的模块化提供了支持，子模块允许你将一个Git仓库作为另一个Git仓库的子目录，它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立。具体参见<https://git-scm.com/book/en/v2/Git-Tools-Submodules>。
 
 #### 分支模型 GitFlow
-GitFlow是一个久经考验的Git分支模型和工作流模型，可以使开发流程更加标准化，使协作更加高效。具体参见简要总结如下，<https://nvie.com/posts/a-successful-git-branching-model/>。
+GitFlow是一个久经考验的Git分支模型和工作流模型，可以使开发流程更加标准化，使协作更加高效。简要总结如下，具体参见<https://nvie.com/posts/a-successful-git-branching-model/>。
 
-1. tag/版本命名: minor.major.revision
+1) tag/版本命名: minor.major.revision
 
-2. 两个长期/主要分支：master & develop
-	1. master存储了正式发布的历史
-	2. develop是功能的集成分支
+2) 两个长期/主要分支：master & develop  
+	a) master存储了正式发布的历史  
+	b) develop是功能的集成分支
 	
-3. 三种短期/支持分支：feature & hotfix & release
-	1. 特性分支负责单项新特性的开发，开发完成后合并回develop分支
-	2. 维护分支进行线上bug的热修复，是唯一从master分支创建的分支，修复完成后要合并回master分支和develop分支，master分支合并维护分支之后应该打一个tag修改revision  
-	3. 发布分支处理一个新产品的发布，develop分支凑够一次发布的功能就会创建一个发布分支，主要进行文档的准备以及测试和bug修复，准备好以后要合并到master分支和develop分支，master分支合并发布分支之后应该打一个tag修改major或minor，tag仅在master分支上出现。
+3) 三种短期/支持分支：feature & hotfix & release  
+	a) 特性分支负责单项新特性的开发，开发完成后合并回develop分支  
+	b) 维护分支进行线上bug的热修复，是唯一从master分支创建的分支，修复完成后要合并回master分支和develop分支，master分支合并维护分支之后应该打一个tag修改revision    
+	c) 发布分支处理一个新产品的发布，develop分支凑够一次发布的功能就会创建一个发布分支，主要进行文档的准备以及测试和bug修复，准备好以后要合并到master分支和develop分支，master分支合并发布分支之后应该打一个tag修改major或minor，tag仅在master分支上出现。
  
 #### Git服务器 Gitolite
 虽然Git是一个分布式的版本控制系统，但是为了方便协作，需要有一个主仓库，所有成员都将更改提交到这个主仓库，其他成员可以通过与主仓库同步以保持最新的状态，这个主仓库通常被称为Git服务器。
