@@ -101,8 +101,14 @@ page-mathjax: false
 # Links
 friends: [
     {
-        title: "Android Developer",
+        title: "Google Developers",
+        href: "https://developers.google.cn/"
+    },{
+        title: "Android Developers",
         href: "https://developer.android.google.cn/"
+    },{
+        title: "Google I/O",
+        href: "https://events.google.com/io/"
     },{
         title: "Java Specification",
         href: "https://docs.oracle.com/javase/specs/jls/se8/html/index.html"
