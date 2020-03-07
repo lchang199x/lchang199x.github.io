@@ -76,7 +76,7 @@ sudo update-alternatives --config editor
 
 14) 安装snap install notepadqq GitKraken Chromium Tusk
 
-15) 修改/etc/network/interfaces设置静态ip，重启或执行sudo /etc/init.d/networking restart使设置生效（所有服务的启动脚本都位于/etc/init.d目录下）
+15) 修改/etc/network/interfaces设置静态ip，重启或执行sudo /etc/init.d/networking restart使设置生效（所有运行级别对应的启动脚本/etc/rcN.d实际上都链接到了/etc/init.d目录下）
 
 16) 使用ADT Bundle时，若采用最新版eclipse，所需的jre版本(可在eclipse.ini中查看)应拷贝到eclipse根目录下，并安装ADT Plugin
 
