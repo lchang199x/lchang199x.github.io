@@ -10,9 +10,7 @@ tags:
     - Android
 ---
 
-> Based on course materials of [Android Performance](https://cn.udacity.com/course/android-performance--ud825) by Google
-
-
+> Based on resources of the udacity course [Android Performance](https://cn.udacity.com/course/android-performance--ud825) developed by Google. Code samples can be downloaded from [Github](https://github.com/udacity?q=ud825&type=&language=).
 
 ### Dialogue: Intro
 *&gt;&gt; Hey cool.  

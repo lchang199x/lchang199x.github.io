@@ -10,7 +10,7 @@ tags:
     - Android
 ---
 
-> Based on course materials of [Android Performance](https://cn.udacity.com/course/android-performance--ud825) by Google
+> Based on resources of the udacity course [Android Performance](https://cn.udacity.com/course/android-performance--ud825) developed by Google. Code samples can be downloaded from [Github](https://github.com/udacity?q=ud825&type=&language=).
 
 ### Developers' Last Thing vs Users' First Concern
 For the majority of Android developers out there, the concept of performance is the last thing on their minds.
@@ -48,4 +48,4 @@ But before you run off into the weeds and become a performance engineer I have o
 
 Throughout this course we'll be teaching you what's going on under the hood of Android and teaching you how to use the tooling to gain insight into some of those actions. Some of that content is going to be prescriptive like if you see this, it means this, so do that. But in honest, that might not always be the case for every application sure something may be inefficient but if it's not impacting your performance, it's not worth stressing over.
 
-This is why we like to say, `tools not rules`, while it's important to understand the rules and the flow of things, you need to validate the true real issues by trusting what your tools say first. It may not make sense for you to solve a problem that you actually don't have. Always go back to the data and validate the true nature of a problem, decide if it's a problem, before moving on to the optimization process. You've been warned, 
+This is why we like to say, `tools not rules`, while it's important to understand the rules and the flow of things, you need to validate the true real issues by trusting what your tools say first. It may not make sense for you to solve a problem that you actually don't have. Always go back to the data and validate the true nature of a problem, decide if it's a problem, before moving on to the optimization process. You've been warned.
