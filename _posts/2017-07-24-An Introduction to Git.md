@@ -291,7 +291,7 @@ Git也为项目的模块化提供了支持，子模块允许你将一个Git仓�
 #### 分支模型 GitFlow
 GitFlow是一个久经考验的Git分支模型和工作流模型，可以使开发流程更加标准化，使协作更加高效。简要总结如下，具体参见<https://nvie.com/posts/a-successful-git-branching-model/>。
 
-1) tag/版本命名: minor.major.revision
+1) tag/版本命名: major.minor.revision
 
 2) 两个长期/主要分支：master & develop  
 	a) master存储了正式发布的历史  
