@@ -110,6 +110,9 @@ friends: [
         title: "Google I/O",
         href: "https://events.google.com/io/"
     },{
+        title: "Material Design",
+        href: "https://material.io/components?platform=android"
+    },{
         title: "Java Specification",
         href: "https://docs.oracle.com/javase/specs/jls/se8/html/index.html"
     },{
