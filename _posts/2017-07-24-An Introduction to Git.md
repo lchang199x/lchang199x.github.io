@@ -182,10 +182,13 @@ git commit –m "Edit file README"
 #每次push之前先执行pull是必要的,否则，当服务器存在本地没有的更新时，push会失败
 git pull origin master
 #origin是远程仓库的代号/别名，master是主分支的默认名称
-git push origin master
+git push -u origin master
 #命令的一般格式
 #:<destination>省略时，push推送到同名分支（没有则新建），pull拉取到当前分支
-git push/pull <remote-host> <source>:<destination>
+git push/pull -u <remote-host> <source>:<destination>
+#推送所有分支和tag到远端
+git push -u <remote-host> --all
+git push -u <remote-host> --tags
 ```
 push和pull的过程可能会产生冲突（conflict），一般需要手动编辑来解决。
 Git push命令中+和-f的含义：
