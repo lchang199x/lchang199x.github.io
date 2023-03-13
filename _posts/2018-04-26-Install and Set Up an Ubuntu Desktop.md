@@ -1,8 +1,8 @@
 ---
 layout:     post
 title:      Install and Set Up an Ubuntu Desktop
-subtitle:   打造一个可用的Ubuntu18.04桌面
-date:       2018-04-26
+subtitle:   打造一个可用的Ubuntu20.04桌面
+date:       2023-03-13
 author:     Cliu
 header-img: img/post-daily-bg.jpg
 catalog: true
@@ -28,7 +28,7 @@ tags:
 
 2) 用Ubuntu推荐的rufus工具将ISO写入U盘，重启按F12选择从上述U盘启动，在首界面选择安装Ubuntu。
 
-3) 在Installation Type这一步选择Something else手动为Ubuntu分区，对上述空闲空间进行分区并指定挂载点，例如/boot 200M足够，最好放在前面，/swap来个4G，/根目录20G，/home要尽量大一点，尤其对用户较多的系统，1G按1024M计，安装启动引导器的设备选/boot。
+3) 在Installation Type这一步选择Something else手动为Ubuntu分区，对上述空闲空间进行分区并指定挂载点，例如/boot 2G足够，最好放在前面，/swap来个16G，/根目录50G，/home要尽量大一点，尤其对用户较多的系统，比如400G，1G按1024M计，安装启动引导器的设备选/boot。
 
 4) 安装完成后，在Win10下用EasyBCD添加新入口，重启即可选择要进入的系统。
 
