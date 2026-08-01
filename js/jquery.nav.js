@@ -209,7 +209,7 @@
 
 		unbindInterval: function() {
 			clearInterval(this.t);
-			this.$win.unbind('scroll.onePageNav');
+			this.$win.off('scroll.onePageNav');
 		}
 	};
 

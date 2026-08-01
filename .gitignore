@@ -6,3 +6,6 @@ npm-debug.log
 */*/.DS_Store
 *.sh
 .vscode
+
+# Local secrets (Gitalk OAuth credentials) - never commit
+_config.local.yml

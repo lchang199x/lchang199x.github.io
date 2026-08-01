@@ -1,0 +1,67 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# GITHUB_TOKEN permissions required for Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true # runs `bundle install` and caches gems
+
+      # Inject Gitalk OAuth credentials from encrypted repository secrets,
+      # so the secret never lives in the repo. If the secrets are not set the
+      # build still succeeds (Gitalk is simply disabled client-side).
+      - name: Inject Gitalk credentials
+        env:
+          GITALK_CLIENT_ID: ${{ secrets.GITALK_CLIENT_ID }}
+          GITALK_CLIENT_SECRET: ${{ secrets.GITALK_CLIENT_SECRET }}
+        run: |
+          : > _config.local.yml
+          if [ -n "$GITALK_CLIENT_ID" ] && [ -n "$GITALK_CLIENT_SECRET" ]; then
+            printf 'gitalk:\n  clientID: "%s"\n  clientSecret: "%s"\n' \
+              "$GITALK_CLIENT_ID" "$GITALK_CLIENT_SECRET" > _config.local.yml
+          else
+            echo "::warning::GITALK_CLIENT_ID / GITALK_CLIENT_SECRET secrets are not set; Gitalk comments will be disabled."
+          fi
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --config _config.yml,_config.local.yml
+
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
