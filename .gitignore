@@ -9,3 +9,6 @@ npm-debug.log
 
 # Local secrets (Gitalk OAuth credentials) - never commit
 _config.local.yml
+
+# JetBrains IDE config
+.idea/
