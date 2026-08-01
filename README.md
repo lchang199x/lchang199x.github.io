@@ -9,54 +9,57 @@ GitHub Pages at **changliu.cc**.
 ## Local development
 
 ```bash
-# 1. Install Ruby gems
 bundle install
-
-# 2. (Optional) provide Gitalk credentials for local comment preview
-#    _config.local.yml is git-ignored and overrides _config.yml
-cp /dev/null _config.local.yml
-cat >> _config.local.yml <<YML
-gitalk:
-  clientID: "YOUR_OAUTH_CLIENT_ID"
-  clientSecret: "YOUR_OAUTH_CLIENT_SECRET"
-YML
-
-# 3. Serve the site
-bundle exec jekyll serve --config _config.yml,_config.local.yml
-#    or simply:  npm run serve
+bundle exec jekyll serve      # or: npm run serve
 ```
 
 The site is then available at <http://127.0.0.1:4000>.
 
-## Security notes
+## Comments (Utterances)
 
-Gitalk uses an OAuth *client secret*. **Never commit the real secret.**
+Comments use [Utterances](https://utteranc.es) — a **secret-free** system backed
+by GitHub Issues. Unlike the previous Gitalk setup, **no OAuth client secret is
+exposed** anywhere (neither in the repo nor in the browser).
 
-- `_config.yml` keeps `clientID` / `clientSecret` blank.
-- Real values live in the git-ignored `_config.local.yml` for local preview.
-- For production, the GitHub Actions workflow (`.github/workflows/pages.yml`)
-  injects the credentials from encrypted repository secrets
-  (`GITALK_CLIENT_ID`, `GITALK_CLIENT_SECRET`) at build time.
+Configuration lives in `_config.yml` under the `utterances:` key. One-time setup:
 
-> ⚠️ **Rotate the previously leaked secret.** An older revision exposed the
-> Gitalk `clientSecret` in `_config.yml`. Go to *GitHub → Settings → Developer
-> settings → OAuth Apps*, regenerate the client secret, and store the new value
-> as a repository Action secret.
+1. Install the [utterances app](https://github.com/apps/utterances) and grant it
+   access to `lchang199x/lchang199x.github.io`.
+2. That's it — comments appear on the About page. Each page maps to a GitHub
+   issue via `issue-term: pathname`.
 
-### Enabling Actions-based deployment
+> The old Gitalk OAuth client secret was removed entirely. You may delete the
+> now-unused `GITALK_CLIENT_ID` / `GITALK_CLIENT_SECRET` repository secrets.
 
-1. Add repository secrets `GITALK_CLIENT_ID` and `GITALK_CLIENT_SECRET`
-   (*Settings → Secrets and variables → Actions*).
-2. Set *Settings → Pages → Build and deployment → Source* to
-   **GitHub Actions**.
-3. Push to `main` — the workflow builds and deploys automatically.
+## Deployment
+
+The site builds and deploys via GitHub Actions
+(`.github/workflows/pages.yml`):
+
+- On **pull request**: builds the site to catch Liquid / build errors.
+- On **push to `main`**: builds and deploys to GitHub Pages.
+
+Ensure *Settings → Pages → Build and deployment → Source* is set to
+**GitHub Actions**.
 
 ## Maintenance
 
 - **Dependabot** (`.github/dependabot.yml`) opens weekly PRs to bump Ruby gems,
   npm devDependencies, and GitHub Actions.
-- The **CI workflow** builds the site on every pull request to catch Liquid /
-  build errors before merging.
+- The **CI workflow** builds the site on every pull request.
+
+## Front-end stack
+
+| Library | Version |
+|---------|---------|
+| Jekyll | 4.4.1 |
+| jQuery | 3.7.1 |
+| Bootstrap | 3.4.1 |
+| Font Awesome | 4.7.0 (CDN + SRI) |
+| FastClick | 1.0.6 (CDN + SRI) |
+
+Third-party CDN resources are pinned to exact versions and protected with
+Subresource Integrity (SRI) hashes.
 
 ## Theme credits
 

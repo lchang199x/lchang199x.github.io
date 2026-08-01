@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 email: lchang199x@gmail.com
 description: "Chang's Homepage"
 keyword: "Chang's Homepage, Weenote developer Blog"
-url: "http://lchang199x.github.io"          # your host, for absolute URL
+url: "https://changliu.cc"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
@@ -51,15 +51,13 @@ kramdown:
       start_line: 1
 
 
-# Gitalk
-gitalk:
-  enable: true    #是否开启Gitalk评论
-  clientID: ""                            # moved to _config.local.yml (gitignored); see README
-  clientSecret: ""    # moved to _config.local.yml (gitignored); this secret was leaked - ROTATE it in GitHub OAuth App settings
-  repo: lchang199x.github.io    #仓库名称
-  owner: lchang199x    #github用户名
-  admin: lchang199x
-  distractionFreeMode: false #是否启用类似FB的阴影遮罩
+# Utterances comments (https://utteranc.es)
+# Secret-free, secure alternative to Gitalk (GitHub Issues based; no OAuth secret exposed client-side).
+utterances:
+  enable: true
+  repo: "lchang199x/lchang199x.github.io"   # repo must be public and the utterances app installed
+  issue-term: "pathname"
+  theme: "github-light"
 
 
 # Netease settings
